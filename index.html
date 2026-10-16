@@ -229,6 +229,14 @@ details.year[open] .pm{transform:rotate(45deg)}
 .media .ttl small{display:block;color:var(--muted);font-weight:500;font-size:14px}
 .media .when{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);white-space:nowrap;font-variant-numeric:lining-nums}
 
+/* SNS */
+.sns-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.sns-item{min-width:0;display:flex;justify-content:center}
+.sns-item blockquote{margin:0 !important;width:100% !important;min-width:0 !important;max-width:100% !important}
+.sns-item iframe{max-width:100% !important}
+.sns-fallback{display:block;width:100%;padding:22px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--navy);font-weight:700}
+@media (max-width:960px){.sns-grid{grid-template-columns:1fr;max-width:540px;margin:0 auto}}
+
 /* Blog & Contact */
 .finale{background:var(--navy);color:var(--on-navy);--line:rgba(244,239,231,.2)}
 .finale .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding-block:clamp(72px,9vw,104px)}
@@ -416,6 +424,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     </div>
   </section>
 
+  <section class="sec" id="sns" hidden>
+    <div class="wrap">
+      <div class="sec-head"><span class="deco">SNS</span><h2>Updates</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <div class="sns-grid" id="snsGrid"></div>
+    </div>
+  </section>
+
   <section class="finale" id="contact">
     <div class="wrap">
       <div class="panel">
@@ -528,6 +543,20 @@ function isNew(str){
 const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6],d:r[7],l:r[8]});});return d;};
 (async()=>{
   try{
+    loadSheet("SNS").then(rows=>{
+      const list=rows.map(r=>(r[1]||"").trim()).filter(u=>/^https:\/\/(www\.)?(x|twitter)\.com\/[^/]+\/status\/\d+/.test(u)||/^https:\/\/(www\.)?instagram\.com\/([\w.]+\/)?(p|reel)\/[\w-]+/.test(u)).slice(0,3);
+      if(!list.length) return;
+      let needX=false,needIG=false;
+      document.getElementById("snsGrid").innerHTML=list.map(u=>{
+        if(/instagram\.com/.test(u)){needIG=true;const mm=u.match(/instagram\.com\/(?:[\w.]+\/)?(p|reel)\/([\w-]+)/);const clean=`https://www.instagram.com/${mm[1]}/${mm[2]}/`;return `<div class="sns-item"><blockquote class="instagram-media" data-instgrm-permalink="${esc(clean)}?utm_source=ig_embed" data-instgrm-version="14"><a class="sns-fallback" href="${esc(clean)}" target="_blank" rel="noopener">Instagramで見る ↗</a></blockquote></div>`;}
+        needX=true;const tw=u.split("?")[0].replace(/^https:\/\/(www\.)?x\.com/,"https://twitter.com");
+        return `<div class="sns-item"><blockquote class="twitter-tweet" data-lang="ja" data-dnt="true"><a class="sns-fallback" href="${esc(tw)}" target="_blank" rel="noopener">Xで見る ↗</a></blockquote></div>`;
+      }).join("");
+      document.getElementById("sns").hidden=false;
+      const add=src=>{const sc=document.createElement("script");sc.async=true;sc.src=src;document.body.appendChild(sc);};
+      if(needX) add("https://platform.twitter.com/widgets.js");
+      if(needIG) add("https://www.instagram.com/embed.js");
+    }).catch(()=>{});
     loadSheet("ブログ（自動）").then(rows=>{
       const list=rows.filter(r=>r[0]&&/^https:\/\/ameblo\.jp\//.test(r[1])).slice(0,3);
       if(!list.length) return;
