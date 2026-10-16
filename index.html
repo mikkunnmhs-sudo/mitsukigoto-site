@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mitsuki Goto Official Website</title>
+<meta property="og:title" content="Mitsuki Goto Official Website">
+<meta property="og:description" content="後藤光葵 Mitsuki Goto ミュージカル俳優・音楽家・編曲家のオフィシャルサイト">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.mitsukigoto.com/">
+<meta property="og:image" content="https://www.mitsukigoto.com/img/photo-window.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.mitsukigoto.com/">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<meta name="description" content="後藤光葵 Mitsuki Goto ミュージカル俳優。茨城県水戸市出身。株式会社サンカラーズ所属。洗足学園音楽大学ミュージカルコース卒業。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<style>
+/* Layout: 窓から光が差し込む明るい稽古場。白〜生成りの地に、ジャケットのネイビーで文字、窓枠の木の色を細いアクセントに。
+   トップは左に文字・右に写真の2分割。写真の空気（自然光・笑顔）にサイト全体を合わせる。 */
+:root{
+  color-scheme:light;
+  --paper:#faf8f4;     /* 自然光の白 */
+  --sand:#f1ebe2;      /* 壁のベージュ */
+  --linen:#e7ddcf;
+  --navy:#1f2d4a;      /* ジャケットのネイビー */
+  --navy-2:#2b3b5e;
+  --ink:#1d2230;
+  --muted:#5d6472;
+  --wood:#a5784a;      /* 窓枠の木 */
+  --wood-lt:#d9bf9c;
+  --line:rgba(31,45,74,.16);
+  --on-navy:#f4efe7;
+  --display:"Playfair Display","Didot","Times New Roman",serif;
+  --deco:"Cinzel","Trajan Pro","Times New Roman",serif;
+  --jp-display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:500;font-size:16px;line-height:1.95;letter-spacing:.03em;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--wood);outline-offset:4px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:900px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+.deco{font-family:var(--deco);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:12.5px}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(250,248,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:14px}
+.logo{display:flex;align-items:baseline;gap:12px;text-decoration:none;white-space:nowrap}
+.lg-name{font-family:var(--display);font-style:italic;font-weight:600;font-size:22px;color:var(--navy)}
+.lg-sub{font-family:var(--deco);font-weight:700;font-size:10.5px;letter-spacing:.3em;color:var(--wood);padding-left:12px;border-left:1px solid var(--line)}
+nav ul{display:flex;gap:28px;margin:0;padding:0;list-style:none}
+nav a{text-decoration:none;color:var(--muted);transition:color .25s}
+nav a:hover{color:var(--navy)}
+
+/* ===== Hero：右に大きな写真、ロゴが写真の上まではみ出す雑誌風レイアウト ===== */
+.stage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--sand);position:relative;overflow:hidden}
+.stage .bg{grid-column:2;grid-row:1;position:relative;height:min(80vh,680px);max-width:100%}
+.stage .bg img{width:100%;height:100%;object-fit:cover;object-position:45% 26%;display:block}
+.stage .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(241,235,226,.85) 0%,rgba(241,235,226,0) 28%)}
+.stage .wrap{grid-column:1 / 3;grid-row:1;width:100%;max-width:1240px;margin:0 auto;display:flex;align-items:center;padding-block:56px;position:relative;z-index:2;pointer-events:none}
+.hero-copy{pointer-events:auto;max-width:640px}
+.wordmark{margin:0 0 28px;display:flex;flex-direction:column;align-items:flex-start}
+.wm-name{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(54px,7.4vw,108px);line-height:.95;color:var(--navy);padding-right:.06em;letter-spacing:-.01em}
+.wm-name .ln{display:block}
+.wm-name .ln + .ln{padding-left:.55em}
+.wm-sub{display:flex;align-items:center;gap:14px;margin-top:18px;font-family:var(--deco);font-weight:700;font-size:clamp(12px,1.15vw,14.5px);letter-spacing:.42em;color:var(--wood)}
+.wm-sub::before{content:"";width:36px;height:2px;background:var(--wood);flex:none}
+.roles{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;margin:0 0 6px;padding:0;list-style:none;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,1.6vw,21px);color:var(--navy-2)}
+.roles li{display:flex;align-items:center}
+.roles li + li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood);margin:0 14px}
+.roles-jp{margin:0;font-size:13.5px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
+.nameplate{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);max-width:440px}
+.nameplate .jp{font-family:var(--jp-display);font-weight:700;font-size:clamp(20px,2vw,24px);line-height:1.3;letter-spacing:.14em;margin:0;color:var(--ink)}
+.facts-line{display:flex;flex-direction:column;gap:0;margin:6px 0 0;padding:0;list-style:none;color:var(--muted);font-size:13.5px;width:100%}
+.scroll-cue{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:22px;z-index:3;display:flex;align-items:center;gap:10px;color:var(--wood);text-decoration:none}
+.scroll-cue::after{content:"";width:48px;height:1px;background:var(--wood)}
+@media (min-width:900px){.scroll-cue{left:max(40px,env(safe-area-inset-left,0px))}}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px auto 0;max-width:200px}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--wood-lt)}
+.rule svg{width:30px;height:auto}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--paper);padding:6px}
+.gallery figure{margin:0;aspect-ratio:4/5;overflow:hidden;max-width:100%}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.gallery figure:hover img{transform:scale(1.03)}
+@media (prefers-reduced-motion:reduce){.gallery img{transition:none}}
+
+/* Marquee */
+.marquee{background:var(--navy);overflow:hidden;white-space:nowrap;padding-block:13px}
+.marquee-track{display:inline-flex;animation:tick 60s linear infinite}
+.marquee-track span{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,1.9vw,22px);display:inline-flex;align-items:center;gap:36px;padding-right:36px;color:var(--on-navy)}
+.marquee-track span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood-lt)}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}html{scroll-behavior:auto}}
+
+/* ===== Sections ===== */
+section.sec .wrap{padding-block:clamp(76px,10vw,116px)}
+section.sec.alt{background:var(--sand)}
+.sec-head{text-align:center;margin-bottom:46px}
+.sec-head .deco{color:var(--wood)}
+.sec-head h2{font-family:var(--display);font-weight:600;font-style:italic;font-size:clamp(42px,5.6vw,66px);line-height:1.05;margin:4px 0 0;color:var(--navy)}
+.narrow{max-width:800px;margin:0 auto}
+
+/* News */
+.news{list-style:none;margin:0;padding:0}
+.news li{display:grid;grid-template-columns:120px 96px minmax(0,1fr);gap:16px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--line)}
+.news li:first-child{border-top:1px solid var(--line)}
+.news time{font-family:var(--display);font-weight:600;font-size:18px;font-variant-numeric:lining-nums tabular-nums;color:var(--navy)}
+.news .cat{color:var(--wood)}
+.news .t{font-weight:700}
+.news .d{display:block;color:var(--muted);font-size:14px}
+
+/* Profile：左に写真、右に文章と基本情報 */
+.profile{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:48px;align-items:start}
+.viewer{min-width:0}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;outline:none}
+.slides::-webkit-scrollbar{display:none}
+.slides figure{flex:0 0 100%;margin:0;scroll-snap-align:start;aspect-ratio:4/5;max-width:100%}
+.slides img{width:100%;height:100%;object-fit:cover;display:block}
+.slides img{cursor:zoom-in}
+.zoom-hint{margin:8px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,24,36,.94);display:flex;align-items:center;justify-content:center;
+  padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-close,.lb-arrow{position:absolute;appearance:none;border:1px solid rgba(244,239,231,.35);background:rgba(20,24,36,.5);color:#f4efe7;width:46px;height:46px;font-size:20px;font-weight:700;cursor:pointer}
+.lb-close{top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px))}
+.lb-arrow{top:50%;transform:translateY(-50%)}
+.lb-arrow.l{left:max(12px,env(safe-area-inset-left,0px))}
+.lb-arrow.r{right:max(12px,env(safe-area-inset-right,0px))}
+.lb-count{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:0;right:0;margin:0;text-align:center;color:rgba(244,239,231,.75);font-size:13px;letter-spacing:.2em}
+.viewer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.vbtn{appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--navy);width:40px;height:40px;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.vbtn:hover{background:var(--navy);color:var(--on-navy)}
+.dots{display:flex;gap:8px}
+.dots button{appearance:none;border:0;padding:0;width:8px;height:8px;border-radius:50%;background:var(--linen);cursor:pointer}
+.dots button[aria-current="true"]{background:var(--navy)}
+.profile p{margin:0 0 1em;font-size:15.5px}
+.facts{margin-top:26px;border-top:2px solid var(--navy)}
+.facts dl{margin:0;display:grid;grid-template-columns:1fr;gap:0}
+.facts dl > div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.facts dt{color:var(--wood)}
+.facts dd{margin:0;font-weight:700;font-size:15px}
+
+/* Programs */
+.programs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-bottom:80px}
+.program{background:#fff;border-top:3px solid var(--navy);padding:26px 20px 22px;display:flex;flex-direction:column;gap:10px;min-height:260px;box-shadow:0 1px 0 var(--line);transition:transform .35s,box-shadow .35s}
+.program:hover{transform:translateY(-4px);box-shadow:0 16px 32px -16px rgba(31,45,74,.3)}
+.program .yr{color:var(--wood)}
+.program svg{display:none}
+.program h3{font-family:var(--jp-display);font-weight:800;font-size:18px;line-height:1.55;margin:0;text-wrap:balance}
+.program .en{font-family:var(--display);font-style:italic;font-weight:600;font-size:16px;color:var(--navy-2)}
+.program .dir{margin-top:auto;font-size:13px;color:var(--muted);line-height:1.6}
+.program .rl{font-family:var(--deco);font-weight:700;letter-spacing:.18em;font-size:12.5px;color:var(--navy);border-top:1px solid var(--line);padding-top:10px;width:100%}
+
+/* Archive */
+.archive + .archive{margin-top:72px}
+.archive-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;margin:0 0 4px}
+.archive-title h3{font-family:var(--display);font-style:italic;font-weight:600;font-size:32px;margin:0;color:var(--navy)}
+.archive-title span{color:var(--wood)}
+.archive-note{margin:0 0 18px;color:var(--muted);font-size:14px}
+details.year{border-bottom:1px solid var(--line)}
+details.year:first-of-type{border-top:1px solid var(--line)}
+details.year summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:110px minmax(0,1fr) auto;align-items:center;gap:16px;padding:16px 4px;transition:background .25s}
+details.year summary:hover{background:rgba(165,120,74,.07)}
+details.year summary::-webkit-details-marker{display:none}
+details.year .y{font-family:var(--display);font-weight:600;font-size:30px;line-height:1;font-variant-numeric:lining-nums;color:var(--navy)}
+details.year .n{color:var(--muted)}
+details.year .pm{color:var(--wood);font-family:var(--deco);font-weight:700;font-size:20px;transition:transform .3s}
+details.year[open] .pm{transform:rotate(45deg)}
+.credits{list-style:none;margin:0;padding:4px 4px 24px 130px;display:grid;gap:14px}
+.credits li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px}
+.credits .m{font-size:13px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.credits .w{font-family:var(--jp-display);font-weight:700;font-size:16.5px;line-height:1.6}
+.credits .r{display:block;font-size:14px;font-weight:700;color:var(--navy-2)}
+.credits .v{display:block;font-size:13px;color:var(--muted)}
+.credits .x{font-family:var(--deco);font-weight:600;font-size:10.5px;letter-spacing:.16em;color:var(--muted);border:1px solid var(--line);padding:1px 8px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+
+/* Media */
+.media{list-style:none;margin:0;padding:0}
+.media li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--line)}
+.media li:first-child{border-top:1px solid var(--line)}
+.media .ttl{font-weight:700}
+.media .ttl small{display:block;color:var(--muted);font-weight:500;font-size:14px}
+.media .when{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);white-space:nowrap;font-variant-numeric:lining-nums}
+
+/* Blog & Contact */
+.finale{background:var(--navy);color:var(--on-navy);--line:rgba(244,239,231,.2)}
+.finale .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding-block:clamp(72px,9vw,104px)}
+.panel{padding-right:48px;min-width:0}
+.panel + .panel{border-left:1px solid var(--line);padding-left:48px;padding-right:0}
+.panel .deco{color:var(--wood-lt)}
+.panel h2{font-family:var(--display);font-weight:600;font-style:italic;font-size:clamp(40px,4.8vw,60px);line-height:1.05;margin:6px 0 18px}
+.panel p{margin:0 0 26px;max-width:30em;font-size:15.5px}
+.links{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.links a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .3s}
+.links a:hover{padding-left:12px;color:var(--wood-lt)}
+.links .nm{font-weight:700;font-size:15.5px}
+.links .nm.en{font-family:var(--display);font-style:italic;font-weight:600;font-size:21px}
+.links .hd{display:block;font-size:13px;color:rgba(244,239,231,.7)}
+.links .arw{color:var(--wood-lt);font-weight:700}
+
+footer{background:var(--navy);color:rgba(244,239,231,.65)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px;border-top:1px solid rgba(244,239,231,.15)}
+
+@media (max-width:960px){.programs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  nav{display:none}
+  .lg-name{font-size:19px}
+  .lg-sub{font-size:9.5px;letter-spacing:.24em;padding-left:10px}
+  .stage{grid-template-columns:1fr}
+  .stage .bg{grid-column:1;grid-row:1;height:58vh;max-height:480px}
+  .stage .bg::before{background:linear-gradient(0deg,rgba(241,235,226,1) 0%,rgba(241,235,226,0) 38%)}
+  .stage .bg img{object-position:62% 22%}
+  .stage .wrap{grid-column:1;grid-row:2;margin-top:-110px;padding-block:0 64px}
+  .wm-name{font-size:clamp(52px,15vw,76px)}
+  .roles{font-size:17px}
+  .roles li + li::before{margin:0 10px}
+  .scroll-cue{display:none}
+  .profile{grid-template-columns:1fr;gap:28px}
+  .viewer{max-width:380px;width:100%;margin:0 auto}
+  .facts dl > div{grid-template-columns:88px minmax(0,1fr)}
+  .news li{grid-template-columns:auto 1fr;gap:2px 16px}
+  .news li > div{grid-column:1 / 3}
+  .programs{grid-template-columns:1fr}
+  .program{min-height:0}
+  details.year summary{grid-template-columns:80px minmax(0,1fr) auto}
+  .credits{padding-left:4px}
+  .credits li{grid-template-columns:64px minmax(0,1fr)}
+  .finale .wrap{grid-template-columns:1fr}
+  .panel,.panel + .panel{padding:0;border-left:0}
+  .panel + .panel{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="lozenge" viewBox="0 0 46 14">
+      <circle cx="23" cy="7" r="4" fill="#a5784a"/>
+    </symbol>
+    <symbol id="fan" viewBox="0 0 60 34">
+      <path d="M30 32 L4 32 A26 26 0 0 1 56 32 Z" fill="none" stroke="#d9b46a" stroke-width="1.5"/>
+      <path d="M30 32L9 15M30 32L19 9M30 32V6M30 32L41 9M30 32L51 15" stroke="#d9b46a" stroke-width="1.3"/>
+      <path d="M18 32A12 12 0 0 1 42 32" fill="none" stroke="#d9b46a" stroke-width="1.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="lg-name">Mitsuki Goto</span><span class="lg-sub">Official Website</span></a>
+    <nav aria-label="メニュー"><ul class="deco">
+      <li><a href="#news">News</a></li>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#stage">Stage</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#contact">Blog / Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="stage">
+    <div class="bg"><img src="img/photo-window.jpg" alt="窓辺にもたれる後藤光葵"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 class="wordmark"><span class="wm-name"><span class="ln">Mitsuki</span><span class="ln">Goto</span></span><span class="wm-sub">Official Website</span></h1>
+        <ul class="roles"><li>Musical Actor</li><li>Musician</li><li>Arranger</li></ul>
+        <p class="roles-jp">ミュージカル俳優 ／ 音楽家 ／ 編曲家</p>
+        <div class="nameplate">
+          <p class="jp">後藤光葵</p>
+          <ul class="facts-line">
+            <li>株式会社サンカラーズ所属</li>
+            <li>洗足学園音楽大学 ミュージカルコース卒業</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a class="scroll-cue deco" href="#news">Scroll</a>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Annie</span><span>Mozart!</span><span>Cesare</span><span>Beauty and the Beast in Concert</span><span>Aladdin in Concert</span><span>Utena</span><span>Comedy Tonight</span>
+      <span>Annie</span><span>Mozart!</span><span>Cesare</span><span>Beauty and the Beast in Concert</span><span>Aladdin in Concert</span><span>Utena</span><span>Comedy Tonight</span>
+    </div>
+  </div>
+
+  <section class="sec" id="news">
+    <div class="wrap narrow">
+      <div class="sec-head"><span class="deco">お知らせ</span><h2>News</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <ul class="news">
+        <li><time datetime="2026-10">2026.10</time><span class="cat deco">Info</span><div><span class="t">オフィシャルサイトをリニューアルしました</span></div></li>
+        <li><time datetime="2026">2026</time><span class="cat deco">Stage</span><div><span class="t">今後の出演情報</span><span class="d">情報解禁まで、今しばらくお待ちください。</span></div></li>
+        <li><time datetime="2025-09">2025.09</time><span class="cat deco">Event</span><div><span class="t">某テーマパーク パレード コーラス歌唱</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec alt" id="profile">
+    <div class="wrap">
+      <div class="sec-head"><span class="deco">プロフィール</span><h2>Profile</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <div class="profile">
+        <div class="viewer">
+          <div class="slides" id="slides" tabindex="0" aria-label="写真">
+            <figure><img src="img/photo-portrait.jpg" alt="後藤光葵 ポートレート"></figure>
+            <figure><img src="img/photo-terrace.jpg" alt="テラスで微笑む後藤光葵" loading="lazy"></figure>
+            <figure><img src="img/photo-studio.jpg" alt="スタジオで撮影した後藤光葵の全身写真" loading="lazy"></figure>
+          </div>
+          <p class="zoom-hint">写真をタップで拡大</p>
+          <div class="viewer-nav">
+            <button type="button" class="vbtn" id="prev" aria-label="前の写真">←</button>
+            <div class="dots" id="dots"></div>
+            <button type="button" class="vbtn" id="next" aria-label="次の写真">→</button>
+          </div>
+        </div>
+        <div>
+          <div class="prose-orig">
+            <p>茨城県水戸市出身。2月10日生まれ。<br>株式会社サンカラーズ所属。<br>洗足学園音楽大学ミュージカルコース卒業。</p>
+            <p>主な出演作に、『ももクロ一座』（鈴木ひがし演出）、『チェーザレ』（小山ゆうな演出）、Disney on CLASSIC Premium『美女と野獣・アラジン イン・コンサート』（トニークレメンツ演出）、『アニー』バンドルズ役 他【2019年～】（山田和也演出）、『少女革命ウテナ』（吉谷光太郎演出）、『モーツァルト！』（小池修一郎演出）、『コメディ・トゥナイト！〜ローマで起こったおかしな出来事【江戸版】』黒衣 役（宮本亜門演出）、邦楽ミュージカル『夏花火♡恋名残』佐原喜三郎役（倉迫康史演出）、など。</p>
+            <p>その他、NHK FM「ティティヴィルスの見えない蜂」、NHK「紅白歌合戦」「うたコン」「SONGS」、MBS TBS「シドニアの騎士 第九惑星戦役」angela“騎士行進曲”コーラスなど、舞台を中心に幅広く活動している。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="stage">
+    <div class="wrap">
+      <div class="sec-head"><span class="deco">出演歴</span><h2>Stage</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <div class="programs">
+        <article class="program"><span class="yr deco">2019 — 2025</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>丸美屋食品ミュージカル『アニー』</h3><span class="en">Annie</span><span class="dir">山田和也 演出<br>新国立劇場 ほか</span><span class="rl">Bundles</span></article>
+        <article class="program"><span class="yr deco">2018</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>東宝ミュージカル『モーツァルト！』</h3><span class="en">Mozart!</span><span class="dir">小池修一郎 演出<br>帝国劇場 ほか</span><span class="rl">Toho</span></article>
+        <article class="program"><span class="yr deco">2023</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>ミュージカル『チェーザレ 破壊の創造者』</h3><span class="en">Cesare</span><span class="dir">小山ゆうな 演出<br>明治座</span><span class="rl">Meijiza</span></article>
+        <article class="program"><span class="yr deco">2020 · 2025</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>Disney on CLASSIC Premium イン・コンサート</h3><span class="en">Beauty and the Beast / Aladdin</span><span class="dir">トニー・クレメンツ 演出<br>横浜アリーナ</span><span class="rl">Concert</span></article>
+      </div>
+      <div class="narrow">
+        <div class="archive">
+          <div class="archive-title"><h3>Performer</h3><span class="deco">出演</span></div>
+          <p class="archive-note">俳優として出演した舞台・コンサート</p>
+          <div id="perf"></div>
+        </div>
+        <div class="archive">
+          <div class="archive-title"><h3>Music Staff</h3><span class="deco">音楽スタッフ</span></div>
+          <p class="archive-note">音楽助手・副指揮・歌唱指導補助として参加した公演</p>
+          <div id="staff"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="media">
+    <div class="wrap narrow">
+      <div class="sec-head"><span class="deco">テレビ・ラジオ</span><h2>Media</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <ul class="media">
+        <li><span class="ttl">NHK「紅白歌合戦」<small>コーラス</small></span><span class="when">2013 · 2016</span></li>
+        <li><span class="ttl">NHK「SONGS」<small>コーラス</small></span><span class="when">2013 — 2017</span></li>
+        <li><span class="ttl">NHK「うたコン」<small>出演</small></span><span class="when">2018</span></li>
+        <li><span class="ttl">NHK FMシアター「ティティヴィルスの見えない蜂」<small>小見山佳典 監督</small></span><span class="when">2016</span></li>
+        <li><span class="ttl">TVアニメ「シドニアの騎士 第九惑星戦役」OP<small>angela「騎士行進曲」コーラス</small></span><span class="when">2015</span></li>
+        <li><span class="ttl">テレビCM 某テーマパーク<small>歌唱</small></span><span class="when">—</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="finale" id="contact">
+    <div class="wrap">
+      <div class="panel">
+        <span class="deco">Blog</span>
+        <h2>Journal</h2>
+        <p>稽古場のこと、本番のこと。日々の記録はブログで綴っています。</p>
+        <div class="links">
+          <a href="https://ameblo.jp/gotomitsuki0210/" target="_blank" rel="noopener"><span><span class="nm">ブログを読む</span><span class="hd">Amebaブログ</span></span><span class="arw">↗</span></a>
+        </div>
+      </div>
+      <div class="panel">
+        <span class="deco">Contact</span>
+        <h2>Contact</h2>
+        <p>出演・お仕事のご依頼は、所属事務所 株式会社サンカラーズまでお問い合わせください。</p>
+        <div class="links">
+          <a href="https://x.com/gotomitsuki55" target="_blank" rel="noopener"><span><span class="nm en">X</span><span class="hd">@gotomitsuki55</span></span><span class="arw">↗</span></a>
+          <a href="https://www.instagram.com/mikkunn.m/" target="_blank" rel="noopener"><span><span class="nm en">Instagram</span><span class="hd">@mikkunn.m</span></span><span class="arw">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="写真の拡大表示">
+  <button type="button" class="lb-close" id="lbClose" aria-label="閉じる">×</button>
+  <button type="button" class="lb-arrow l" id="lbPrev" aria-label="前の写真">←</button>
+  <img id="lbImg" src="" alt="">
+  <button type="button" class="lb-arrow r" id="lbNext" aria-label="次の写真">→</button>
+  <p class="lb-count" id="lbCount"></p>
+</div>
+
+<footer><div class="wrap deco"><span>© 2026 Mitsuki Goto</span><span>mitsukigoto.com</span></div></footer>
+
+<script>
+// ===== 出演歴データ =====
+// 出演（俳優）: PERF / 音楽スタッフ: STAFF
+// m=月, w=作品名, r=役・担当, v=会場, x=補足(中止・延期)
+const PERF={
+2025:[{m:"3月",w:"Disney on CLASSIC Premium『アラジン』イン・コンサート",v:"横浜アリーナ"},{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"上田・大阪・名古屋・金沢"}],
+2024:[{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"広島・大阪・名古屋・仙台"}],
+2023:[{m:"1・2月",w:"ミュージカル『チェーザレ 破壊の創造者』",v:"明治座"},{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"松本・大阪・名古屋・新潟"},{m:"11・12月",w:"ももクロ一座 特別公演『CHANGE THE FUTURE!』",v:"明治座（鈴木ひがし 演出）"},{m:"12月",w:"第6回 ももいろ歌合戦 ももクロ一座 紅組出場",v:"横浜アリーナ"}],
+2022:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"宮城・大阪・金沢・名古屋"}],
+2021:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"松本・東京・大阪・名古屋"},{m:"9・10月",w:"第2回 ももクロ一座 特別公演",v:"明治座",x:"延期"},{m:"12月",w:"丸美屋食品ミュージカル『アニー』クリスマスコンサート2021",v:"新国立劇場 中劇場"}],
+2020:[{m:"2月",w:"Disney on CLASSIC Premium『美女と野獣』イン・コンサート",v:"横浜アリーナ"},{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場 中劇場",x:"中止"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"大阪・群馬・名古屋・富山",x:"中止"}],
+2019:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場"},{m:"7月",w:"ミュージカル『少女革命ウテナ』〜深く綻ぶ黒薔薇の〜",v:"シアターGロッソ"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"梅田芸術劇場 ほか"}],
+2018:[{m:"2月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"佐原喜三郎 役",v:"新橋演舞場"},{m:"5〜8月",w:"東宝ミュージカル『モーツァルト！』",v:"帝国劇場・梅田芸術劇場・御園座"},{m:"12月",w:"第13回ミュージカルコース本公演『GYPSY』",r:"ポップ／ゴールドストーン 役"}],
+2017:[{m:"1月",w:"Senior Musical Showcase 〜Special Version〜",v:"洗足学園 前田ホール"},{m:"3・4月",w:"『コメディ・トゥナイト！〜ローマで起こったおかしな出来事【江戸版】』",r:"黒衣 役",v:"新橋演舞場・大阪松竹座（宮本亜門 演出）"},{m:"8月",w:"中高生ミュージカル『SMILE』",r:"ビッグ・ボブ 役",v:"洗足学園音楽大学 ビッグマウス"},{m:"10月",w:"第12回ミュージカルコース本公演『Catch Me If You Can』",r:"フランク・アバグネイル Sr. 役",v:"洗足学園 前田ホール"}],
+2016:[{m:"3月",w:"第5回ミュージカルコースアトリエ公演『MS TRAIN!!』",r:"主役・笹木巡 役",v:"洗足学園音楽大学 ビッグマウス"},{m:"7月",w:"Summer Musical Showcase Vol.10",v:"洗足学園 前田ホール"},{m:"10月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"佐原喜三郎 役",v:"洗足学園 前田ホール"}],
+2015:[{m:"3月",w:"第4回ミュージカルコースアトリエ公演『Little Women〜若草物語〜』",r:"ベア教授 役"},{m:"3月",w:"ドラマティックシアター2015『帽子屋のお茶の会』",r:"使者 役"},{m:"7月",w:"Summer Musical Showcase Vol.10"},{m:"10月",w:"第11回ミュージカルコース本公演『The Wiz〜オズの魔法使い〜』",r:"かかし 役"},{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"おたま父 役"}],
+2014:[{m:"3月",w:"第3回ミュージカルコースアトリエ公演『Into the Woods』",r:"パン屋 役"},{m:"3月",w:"ドラマティックシアター2014『ロング・クリスマスディナー』",r:"チャールズ 役"},{m:"7月",w:"Summer Musical Showcase Vol.9"},{m:"10月",w:"第10回ミュージカルコース本公演『CHICAGO』",r:"エイモス 役"},{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"おたま父 役"}],
+2013:[{m:"4月",w:"シアトリカル・リーディング『〜如月小春 作 DOLL〜』",r:"ト書き・兄・校長 役"},{m:"7月",w:"Summer Musical Showcase Vol.8"},{m:"8月",w:"中高生のためのミュージカル『LEGALLY BLONDE』",r:"ウィンスロップ 役・ニコ 役"},{m:"11月",w:"第9回ミュージカルコース本公演『FAME』",r:"マイヤーズ 役"},{m:"11月",w:"邦楽ミュージカル『恋娘近松合戦！』",r:"お寺の小坊主 役"}]};
+
+const STAFF={
+2023:[{m:"2・3月",w:"洗足学園音楽大学 ミュージカルコース第12回アトリエ公演『マリー＝ガブリエルの自画像』",r:"音楽助手"}],
+2022:[{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
+2021:[{m:"1月",w:"Winter Musical Showcase Vol.3",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"7月",w:"Summer Musical Showcase Vol.16",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"10月",w:"第17回ミュージカルコース本公演『COMPANY』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"11月",w:"邦楽ミュージカル10周年記念公演『恋娘近松合戦！』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
+2020:[{m:"1月",w:"Winter Musical Showcase Vol.2",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"2月",w:"第9回ミュージカルコースアトリエ公演『MS TRAIN!!』",r:"音楽助手",v:"洗足学園 ビッグマウス",x:"中止"},{m:"11月",w:"邦楽ミュージカル『恋娘近松合戦！』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"12月",w:"第16回ミュージカルコース本公演『MS TRAIN!! 2020 - Social Distance Version -』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
+2019:[{m:"2〜3月",w:"第8回ミュージカルコースアトリエ公演『モダン・ミリー』",r:"音楽助手"},{m:"7月",w:"Summer Musical Showcase Vol.14",r:"副指揮・音楽助手",v:"洗足学園 前田ホール"},{m:"10月",w:"第14回ミュージカルコース本公演『パジャマゲーム』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"明治座"}],
+2018:[{m:"8月",w:"中高生ミュージカル『GREASE』",r:"歌唱指導補助",v:"洗足学園音楽大学 ビッグマウス"},{m:"10月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"第13回ミュージカルコース本公演『GYPSY』",r:"音楽助手"}]};
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(data,id,openFirst){
+  const box=document.getElementById(id);
+  Object.keys(data).sort((a,b)=>b-a).forEach((y,i)=>{
+    const it=data[y],d=document.createElement("details");
+    d.className="year"; if(openFirst&&i===0) d.open=true;
+    d.innerHTML=`<summary><span class="y">${y}</span><span class="n deco">${it.length} ${it.length>1?"Works":"Work"}</span><span class="pm" aria-hidden="true">+</span></summary><ul class="credits">${it.map(e=>`<li><span class="m">${esc(e.m)}</span><div><span class="w">${esc(e.w)}</span>${e.x?`<span class="x">${esc(e.x)}</span>`:""}${e.r?`<span class="r">${esc(e.r)}</span>`:""}${e.v?`<span class="v">${esc(e.v)}</span>`:""}</div></li>`).join("")}</ul>`;
+    box.appendChild(d);
+  });
+}
+render(PERF,"perf",true);
+render(STAFF,"staff",false);
+
+// 写真ビューア
+(function(){
+  const box=document.getElementById("slides"),dots=document.getElementById("dots");
+  const n=box.children.length;
+  for(let i=0;i<n;i++){const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",(i+1)+"枚目");b.onclick=()=>go(i);dots.appendChild(b);}
+  const cur=()=>Math.round(box.scrollLeft/box.clientWidth);
+  const go=i=>box.scrollTo({left:((i+n)%n)*box.clientWidth});
+  const mark=()=>[...dots.children].forEach((d,i)=>d.setAttribute("aria-current",i===cur()?"true":"false"));
+  document.getElementById("prev").onclick=()=>go(cur()-1);
+  document.getElementById("next").onclick=()=>go(cur()+1);
+  box.addEventListener("scroll",()=>requestAnimationFrame(mark));
+  box.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur()+1);if(e.key==="ArrowLeft")go(cur()-1);});
+  mark();
+
+  // 拡大表示
+  const imgs=[...box.querySelectorAll("img")],lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),cnt=document.getElementById("lbCount");
+  let k=0;
+  const show=i=>{k=(i+n)%n;lbImg.src=imgs[k].src;lbImg.alt=imgs[k].alt;cnt.textContent=(k+1)+" / "+n;};
+  const open=i=>{show(i);lb.hidden=false;document.body.style.overflow="hidden";document.getElementById("lbClose").focus();};
+  const close=()=>{lb.hidden=true;document.body.style.overflow="";go(k);};
+  imgs.forEach((im,i)=>im.addEventListener("click",()=>open(i)));
+  document.getElementById("lbClose").onclick=close;
+  document.getElementById("lbPrev").onclick=()=>show(k-1);
+  document.getElementById("lbNext").onclick=()=>show(k+1);
+  lb.addEventListener("click",e=>{if(e.target===lb)close();});
+  document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowRight")show(k+1);if(e.key==="ArrowLeft")show(k-1);});
+  let sx=null;
+  lb.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(k+(dx<0?1:-1));sx=null;});
+})();
+</script>
+
+</body>
+</html>
