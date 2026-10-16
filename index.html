@@ -144,6 +144,27 @@ section.sec.alt{background:var(--sand)}
 .slides img{width:100%;height:100%;object-fit:cover;display:block}
 .slides img{cursor:zoom-in}
 .zoom-hint{margin:8px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+.has-detail{cursor:pointer;transition:background .2s}
+.has-detail:hover,.has-detail:focus-visible{background:rgba(165,120,74,.07)}
+.news li.has-detail{position:relative;padding-right:28px}
+.news li.has-detail::after{content:"→";position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--wood);font-weight:700}
+.more-hint{display:block;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--wood)}
+.detail{position:fixed;inset:0;z-index:90;background:rgba(20,24,36,.55);display:flex;align-items:center;justify-content:center;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.detail-panel{position:relative;background:var(--paper);width:100%;max-width:640px;max-height:100%;overflow-y:auto;padding:40px 36px 36px;border-top:4px solid var(--navy);box-shadow:0 30px 80px rgba(20,24,36,.4)}
+.detail-close{position:absolute;top:10px;right:10px;appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--navy);width:40px;height:40px;font-size:20px;font-weight:700;cursor:pointer}
+.detail-close:hover{background:var(--navy);color:var(--on-navy)}
+.detail-meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 40px 10px 0}
+.detail-meta .deco{color:var(--wood)}
+.detail-meta time{font-family:var(--display);font-weight:600;color:var(--navy);font-variant-numeric:lining-nums}
+.detail h3{font-family:var(--jp-display);font-weight:700;font-size:clamp(20px,2.6vw,24px);line-height:1.5;margin:0;color:var(--ink);text-wrap:balance}
+.detail-sub{margin:8px 0 0;color:var(--navy-2);font-weight:700;font-size:14.5px}
+.detail-lead{margin:16px 0 0;font-weight:700}
+.detail-body{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);white-space:pre-wrap;font-size:15.5px;line-height:2}
+.detail-body:empty{display:none}
+.detail-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:13px 22px;background:var(--navy);color:var(--on-navy);text-decoration:none;font-weight:700;font-size:14.5px}
+.detail-link:hover{background:var(--navy-2)}
+@media (max-width:760px){.detail{align-items:flex-end;padding-left:0;padding-right:0;padding-bottom:0}.detail-panel{max-height:88vh;padding:36px max(20px,env(safe-area-inset-left,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-right,0px))}}
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,24,36,.94);display:flex;align-items:center;justify-content:center;
   padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
@@ -419,6 +440,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   </section>
 </main>
 
+<div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-labelledby="dtTitle">
+  <div class="detail-panel">
+    <button type="button" class="detail-close" id="dtClose" aria-label="閉じる">×</button>
+    <p class="detail-meta"><span class="deco" id="dtKind"></span><time id="dtDate"></time></p>
+    <h3 id="dtTitle"></h3>
+    <p class="detail-sub" id="dtSub"></p>
+    <p class="detail-lead" id="dtLead"></p>
+    <div class="detail-body" id="dtBody"></div>
+    <a class="detail-link" id="dtLink" href="#" target="_blank" rel="noopener" hidden>詳しくはこちら <span aria-hidden="true">↗</span></a>
+  </div>
+</div>
+
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="写真の拡大表示">
   <button type="button" class="lb-close" id="lbClose" aria-label="閉じる">×</button>
   <button type="button" class="lb-arrow l" id="lbPrev" aria-label="前の写真">←</button>
@@ -456,6 +489,8 @@ const STAFF={
 2019:[{m:"2〜3月",w:"第8回ミュージカルコースアトリエ公演『モダン・ミリー』",r:"音楽助手"},{m:"7月",w:"Summer Musical Showcase Vol.14",r:"副指揮・音楽助手",v:"洗足学園 前田ホール"},{m:"10月",w:"第14回ミュージカルコース本公演『パジャマゲーム』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"明治座"}],
 2018:[{m:"8月",w:"中高生ミュージカル『GREASE』",r:"歌唱指導補助",v:"洗足学園音楽大学 ビッグマウス"},{m:"10月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"第13回ミュージカルコース本公演『GYPSY』",r:"音楽助手"}]};
 
+const DETAILS=[];
+const addDetail=o=>DETAILS.push(o)-1;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function render(data,id,openFirst){
   const box=document.getElementById(id);
@@ -463,7 +498,7 @@ function render(data,id,openFirst){
   Object.keys(data).sort((a,b)=>b-a).forEach((y,i)=>{
     const it=data[y],d=document.createElement("details");
     d.className="year"; if(openFirst&&i===0) d.open=true;
-    d.innerHTML=`<summary><span class="y">${y}</span><span class="n deco">${it.length} ${it.length>1?"Works":"Work"}</span><span class="pm" aria-hidden="true">+</span></summary><ul class="credits">${it.map(e=>`<li><span class="m">${esc(e.m)}</span><div><span class="w">${esc(e.w)}</span>${e.x?`<span class="x">${esc(e.x)}</span>`:""}${e.r?`<span class="r">${esc(e.r)}</span>`:""}${e.v?`<span class="v">${esc(e.v)}</span>`:""}</div></li>`).join("")}</ul>`;
+    d.innerHTML=`<summary><span class="y">${y}</span><span class="n deco">${it.length} ${it.length>1?"Works":"Work"}</span><span class="pm" aria-hidden="true">+</span></summary><ul class="credits">${it.map(e=>{const k=(e.d||e.l)?addDetail({kind:id==="staff"?"Music Staff":"Stage",date:y+"年 "+(e.m||""),title:e.w,sub:[e.r,e.v].filter(Boolean).join("　"),tag:e.x,body:e.d,link:e.l}):null;return `<li${k!=null?` class="has-detail" data-k="${k}" tabindex="0" role="button" aria-haspopup="dialog"`:""}><span class="m">${esc(e.m)}</span><div><span class="w">${esc(e.w)}</span>${e.x?`<span class="x">${esc(e.x)}</span>`:""}${e.r?`<span class="r">${esc(e.r)}</span>`:""}${e.v?`<span class="v">${esc(e.v)}</span>`:""}${k!=null?'<span class="more-hint">詳細を見る →</span>':""}</div></li>`;}).join("")}</ul>`;
     box.appendChild(d);
   });
 }
@@ -490,7 +525,7 @@ function isNew(str){
   const diff=(Date.now()-d.getTime())/86400000;
   return diff>=-1&&diff<=30;
 }
-const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6]});});return d;};
+const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6],d:r[7],l:r[8]});});return d;};
 (async()=>{
   try{
     loadSheet("ブログ（自動）").then(rows=>{
@@ -503,12 +538,37 @@ const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0
     const [news,perf,staff,media]=await Promise.all(["お知らせ","出演","音楽スタッフ","メディア"].map(loadSheet));
     if(news.length){
       news.sort((a,b)=>String(b[1]).localeCompare(String(a[1]),"ja",{numeric:true}));
-      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div>${isNew(r[1])?'<span class="new">New</span>':""}<span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
+      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li class="has-detail" tabindex="0" role="button" aria-haspopup="dialog" data-k="${addDetail({kind:r[2]||"News",date:r[1],title:r[3],sub:"",lead:r[4],body:r[5],link:r[6],isNew:isNew(r[1])})}"><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div>${isNew(r[1])?'<span class="new">New</span>':""}<span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
     }
     if(perf.length) render(toYears(perf),"perf",true);
     if(staff.length) render(toYears(staff),"staff",false);
     if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
   }catch(e){ console.warn("シートを読み込めなかったため、保存済みの内容を表示しています",e); }
+})();
+
+// 詳細ウィンドウ
+(function(){
+  const box=document.getElementById("detail"),$=id=>document.getElementById(id);
+  let last=null;
+  const open=k=>{
+    const o=DETAILS[k]; if(!o) return;
+    $("dtKind").textContent=o.kind||""; $("dtDate").textContent=o.date||"";
+    $("dtTitle").innerHTML=(o.isNew?'<span class="new">New</span>':"")+esc(o.title||"");
+    $("dtSub").textContent=[o.sub,o.tag].filter(Boolean).join("　"); $("dtSub").hidden=!$("dtSub").textContent;
+    $("dtLead").textContent=o.lead||""; $("dtLead").hidden=!o.lead;
+    $("dtBody").textContent=o.body||"";
+    const ok=/^https?:\/\//.test(o.link||""); $("dtLink").hidden=!ok; if(ok) $("dtLink").href=o.link;
+    last=document.activeElement; box.hidden=false; document.body.style.overflow="hidden"; $("dtClose").focus();
+  };
+  const close=()=>{box.hidden=true;document.body.style.overflow="";if(last)last.focus();};
+  document.addEventListener("click",e=>{const t=e.target.closest(".has-detail");if(t)open(+t.dataset.k);});
+  document.addEventListener("keydown",e=>{
+    if(!box.hidden&&e.key==="Escape") return close();
+    const t=e.target.closest&&e.target.closest(".has-detail");
+    if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();open(+t.dataset.k);}
+  });
+  $("dtClose").onclick=close;
+  box.addEventListener("click",e=>{if(e.target===box)close();});
 })();
 
 // スマホ用メニュー
