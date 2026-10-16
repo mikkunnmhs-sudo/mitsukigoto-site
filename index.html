@@ -61,6 +61,20 @@ header.top .wrap{display:flex;justify-content:space-between;align-items:center;g
 nav ul{display:flex;gap:28px;margin:0;padding:0;list-style:none}
 nav a{text-decoration:none;color:var(--muted);transition:color .25s}
 nav a:hover{color:var(--navy)}
+.menu-btn{display:none;appearance:none;border:1px solid var(--line);background:var(--paper);width:42px;height:42px;border-radius:50%;position:relative;cursor:pointer;flex:none}
+.menu-btn span{position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--navy);transform:translate(-50%,-50%);transition:transform .3s}
+.menu-btn span + span{transform:translate(-50%,-50%) rotate(90deg)}
+.menu-btn[aria-expanded="true"]{background:var(--navy)}
+.menu-btn[aria-expanded="true"] span{background:var(--on-navy);transform:translate(-50%,-50%) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span + span{transform:translate(-50%,-50%) rotate(135deg)}
+/* NEW 表示 */
+.new{display:inline-block;margin-right:8px;padding:1px 8px;font-family:var(--deco);font-weight:700;font-size:10px;letter-spacing:.16em;color:var(--on-navy);background:var(--wood);vertical-align:2px}
+/* ブログ新着 */
+.blog-list{list-style:none;margin:0 0 4px;padding:0;border-top:1px solid var(--line)}
+.blog-list a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .3s}
+.blog-list a:hover{padding-left:12px;color:var(--wood-lt)}
+.blog-list .bt{font-weight:700;font-size:15px;min-width:0}
+.blog-list time{flex:none;font-size:12.5px;color:rgba(244,239,231,.7);font-variant-numeric:tabular-nums}
 
 /* ===== Hero：右に大きな写真、ロゴが写真の上まではみ出す雑誌風レイアウト ===== */
 .stage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--sand);position:relative;overflow:hidden}
@@ -215,7 +229,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 
 @media (max-width:960px){.programs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){
-  nav{display:none}
+  .menu-btn{display:block}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -20px rgba(31,45,74,.35)}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:6px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px))}
+  nav a{display:block;padding:14px 4px;border-bottom:1px solid var(--line);font-size:14px;color:var(--navy)}
+  nav li:last-child a{border-bottom:0}
   .lg-name{font-size:19px}
   .lg-sub{font-size:9.5px;letter-spacing:.24em;padding-left:10px}
   .stage{grid-template-columns:1fr}
@@ -261,7 +280,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#top"><span class="lg-name">Mitsuki Goto</span><span class="lg-sub">Official Website</span></a>
-    <nav aria-label="メニュー"><ul class="deco">
+    <button type="button" class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="siteNav"><span></span><span></span></button>
+    <nav aria-label="メニュー" id="siteNav"><ul class="deco">
       <li><a href="#news">News</a></li>
       <li><a href="#profile">Profile</a></li>
       <li><a href="#stage">Stage</a></li>
@@ -381,8 +401,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <span class="deco">Blog</span>
         <h2>Journal</h2>
         <p>稽古場のこと、本番のこと。日々の記録はブログで綴っています。</p>
+        <ul class="blog-list" id="blogList" hidden></ul>
         <div class="links">
-          <a href="https://ameblo.jp/gotomitsuki0210/" target="_blank" rel="noopener"><span><span class="nm">ブログを読む</span><span class="hd">Amebaブログ</span></span><span class="arw">↗</span></a>
+          <a href="https://ameblo.jp/gotomitsuki0210/" target="_blank" rel="noopener"><span><span class="nm">ブログをもっと読む</span><span class="hd">Amebaブログ</span></span><span class="arw">↗</span></a>
         </div>
       </div>
       <div class="panel">
@@ -461,18 +482,41 @@ async function loadSheet(name){
   return json.table.rows.map(r=>(r.c||[]).map(c=>c==null?"":String(c.f!=null?c.f:(c.v!=null?c.v:"")).trim()))
     .filter(r=>r.some(v=>v!=="")&&r[0]!=="×"&&r[0]!=="x"&&r[0]!=="✕");
 }
+// 日付（2026.10.17 / 2026.10 / 2026/10/17）から30日以内なら New
+function isNew(str){
+  const m=String(str).match(/(\d{4})\D+(\d{1,2})(?:\D+(\d{1,2}))?/);
+  if(!m) return false;
+  const d=new Date(+m[1],+m[2]-1,m[3]?+m[3]:1);
+  const diff=(Date.now()-d.getTime())/86400000;
+  return diff>=-1&&diff<=30;
+}
 const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6]});});return d;};
 (async()=>{
   try{
+    loadSheet("ブログ（自動）").then(rows=>{
+      const list=rows.filter(r=>r[0]&&/^https:\/\/ameblo\.jp\//.test(r[1])).slice(0,3);
+      if(!list.length) return;
+      const box=document.getElementById("blogList");
+      box.innerHTML=list.map(r=>{const d=new Date(r[2]);const ds=isNaN(d)?"":`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;return `<li><a href="${esc(r[1])}" target="_blank" rel="noopener"><span class="bt">${esc(r[0])}</span><time>${ds}</time></a></li>`;}).join("");
+      box.hidden=false;
+    }).catch(()=>{});
     const [news,perf,staff,media]=await Promise.all(["お知らせ","出演","音楽スタッフ","メディア"].map(loadSheet));
     if(news.length){
       news.sort((a,b)=>String(b[1]).localeCompare(String(a[1]),"ja",{numeric:true}));
-      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div><span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
+      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div>${isNew(r[1])?'<span class="new">New</span>':""}<span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
     }
     if(perf.length) render(toYears(perf),"perf",true);
     if(staff.length) render(toYears(staff),"staff",false);
     if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
   }catch(e){ console.warn("シートを読み込めなかったため、保存済みの内容を表示しています",e); }
+})();
+
+// スマホ用メニュー
+(function(){
+  const btn=document.getElementById("menuBtn"),nav=document.getElementById("siteNav");
+  const set=o=>{nav.classList.toggle("open",o);btn.setAttribute("aria-expanded",o);btn.setAttribute("aria-label",o?"メニューを閉じる":"メニューを開く");};
+  btn.addEventListener("click",()=>set(!nav.classList.contains("open")));
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>set(false)));
 })();
 
 // 写真ビューア
