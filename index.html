@@ -301,7 +301,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   <section class="sec" id="news">
     <div class="wrap narrow">
       <div class="sec-head"><span class="deco">お知らせ</span><h2>News</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <ul class="news">
+      <ul class="news" id="newsList">
         <li><time datetime="2026-10">2026.10</time><span class="cat deco">Info</span><div><span class="t">オフィシャルサイトをリニューアルしました</span></div></li>
         <li><time datetime="2026">2026</time><span class="cat deco">Stage</span><div><span class="t">今後の出演情報</span><span class="d">情報解禁まで、今しばらくお待ちください。</span></div></li>
         <li><time datetime="2025-09">2025.09</time><span class="cat deco">Event</span><div><span class="t">某テーマパーク パレード コーラス歌唱</span></div></li>
@@ -364,7 +364,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   <section class="sec alt" id="media">
     <div class="wrap narrow">
       <div class="sec-head"><span class="deco">テレビ・ラジオ</span><h2>Media</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <ul class="media">
+      <ul class="media" id="mediaList">
         <li><span class="ttl">NHK「紅白歌合戦」<small>コーラス</small></span><span class="when">2013 · 2016</span></li>
         <li><span class="ttl">NHK「SONGS」<small>コーラス</small></span><span class="when">2013 — 2017</span></li>
         <li><span class="ttl">NHK「うたコン」<small>出演</small></span><span class="when">2018</span></li>
@@ -438,6 +438,7 @@ const STAFF={
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function render(data,id,openFirst){
   const box=document.getElementById(id);
+  box.innerHTML="";
   Object.keys(data).sort((a,b)=>b-a).forEach((y,i)=>{
     const it=data[y],d=document.createElement("details");
     d.className="year"; if(openFirst&&i===0) d.open=true;
@@ -447,6 +448,32 @@ function render(data,id,openFirst){
 }
 render(PERF,"perf",true);
 render(STAFF,"staff",false);
+
+// ===== スプレッドシートから最新の内容を読み込む =====
+// 編集用シート: Mitsuki Goto Official Website 編集用（Googleスプレッドシート）
+// 読み込めなかったときは、上に書いてある内容がそのまま表示される
+const SHEET_ID="1Z24sLUhVd5NN7uwqOf_Sz10_66jSQ_ZwlE47RY_p74Y";
+async function loadSheet(name){
+  const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${encodeURIComponent(name)}&t=${Date.now()}`;
+  const txt=await (await fetch(url,{cache:"no-store"})).text();
+  const json=JSON.parse(txt.slice(txt.indexOf("(")+1,txt.lastIndexOf(")")));
+  if(json.status!=="ok") throw new Error(name);
+  return json.table.rows.map(r=>(r.c||[]).map(c=>c==null?"":String(c.f!=null?c.f:(c.v!=null?c.v:"")).trim()))
+    .filter(r=>r.some(v=>v!=="")&&r[0]!=="×"&&r[0]!=="x"&&r[0]!=="✕");
+}
+const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6]});});return d;};
+(async()=>{
+  try{
+    const [news,perf,staff,media]=await Promise.all(["お知らせ","出演","音楽スタッフ","メディア"].map(loadSheet));
+    if(news.length){
+      news.sort((a,b)=>String(b[1]).localeCompare(String(a[1]),"ja",{numeric:true}));
+      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div><span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
+    }
+    if(perf.length) render(toYears(perf),"perf",true);
+    if(staff.length) render(toYears(staff),"staff",false);
+    if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
+  }catch(e){ console.warn("シートを読み込めなかったため、保存済みの内容を表示しています",e); }
+})();
 
 // 写真ビューア
 (function(){
