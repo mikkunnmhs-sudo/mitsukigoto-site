@@ -104,9 +104,6 @@ nav a:hover{color:var(--navy)}
 .roles li{display:flex;align-items:center}
 .roles li + li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood);margin:0 14px}
 .roles-jp{margin:0;font-size:13.5px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
-.nameplate{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);max-width:440px}
-.nameplate .jp{font-family:var(--jp-display);font-weight:700;font-size:clamp(20px,2vw,24px);line-height:1.3;letter-spacing:.14em;margin:0;color:var(--ink)}
-.facts-line{display:flex;flex-direction:column;gap:0;margin:6px 0 0;padding:0;list-style:none;color:var(--muted);font-size:13.5px;width:100%}
 .scroll-cue{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:22px;z-index:3;display:flex;align-items:center;gap:10px;color:var(--wood);text-decoration:none}
 .scroll-cue::after{content:"";width:48px;height:1px;background:var(--wood)}
 @media (min-width:900px){.scroll-cue{left:max(40px,env(safe-area-inset-left,0px))}}
@@ -192,6 +189,10 @@ section.sec.alt{background:var(--sand)}
 .dots button{appearance:none;border:0;padding:0;width:8px;height:8px;border-radius:50%;background:var(--linen);cursor:pointer}
 .dots button[aria-current="true"]{background:var(--navy)}
 .profile p{margin:0 0 1em;font-size:15.5px}
+.prof-name{text-align:center;margin:-14px auto 40px}
+.prof-name p{margin:0}
+.prof-name .pn-jp{font-family:var(--jp-display);font-weight:700;font-size:clamp(34px,4.4vw,48px);line-height:1.2;letter-spacing:.14em;padding-left:.14em;color:var(--ink)}
+.prof-name .pn-en{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(20px,2.4vw,26px);line-height:1.3;margin-top:6px !important;color:var(--navy-2);letter-spacing:.04em}
 .facts{margin-top:26px;border-top:2px solid var(--navy)}
 .facts dl{margin:0;display:grid;grid-template-columns:1fr;gap:0}
 .facts dl > div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
@@ -333,13 +334,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
         <h1 class="wordmark"><span class="wm-name"><span class="ln">Mitsuki</span><span class="ln">Goto</span></span><span class="wm-sub">Official Website</span></h1>
         <ul class="roles"><li>Musical Actor</li><li>Musician</li><li>Arranger</li></ul>
         <p class="roles-jp">ミュージカル俳優 ／ 音楽家 ／ 編曲家</p>
-        <div class="nameplate">
-          <p class="jp">後藤光葵</p>
-          <ul class="facts-line">
-            <li>株式会社サンカラーズ所属</li>
-            <li>洗足学園音楽大学 ミュージカルコース卒業</li>
-          </ul>
-        </div>
       </div>
     </div>
     <a class="scroll-cue deco" href="#news">Scroll</a>
@@ -366,6 +360,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   <section class="sec alt" id="profile">
     <div class="wrap">
       <div class="sec-head"><span class="deco">プロフィール</span><h2>Profile</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <div class="prof-name"><p class="pn-jp">後藤光葵</p><p class="pn-en">Mitsuki Goto</p></div>
       <div class="profile">
         <div class="viewer">
           <div class="slides" id="slides" tabindex="0" aria-label="写真">
