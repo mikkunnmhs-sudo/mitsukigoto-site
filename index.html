@@ -239,6 +239,9 @@ details.year[open] .pm{transform:rotate(45deg)}
 .media li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--line)}
 .media li:first-child{border-top:1px solid var(--line)}
 .media .ttl{font-weight:700}
+.media-link{color:inherit;text-decoration:underline;text-decoration-color:var(--wood-lt);text-underline-offset:4px}
+.media-link:hover{color:var(--wood)}
+.media-link .ext{margin-left:6px;color:var(--wood);font-size:.9em;text-decoration:none;display:inline-block}
 .media .ttl small{display:block;color:var(--muted);font-weight:500;font-size:14px}
 .media .when{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);white-space:nowrap;font-variant-numeric:lining-nums}
 
@@ -413,8 +416,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
 
   <section class="sec alt" id="media">
     <div class="wrap narrow">
-      <div class="sec-head"><span class="deco">テレビ・ラジオ</span><h2>Media</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
+      <div class="sec-head"><span class="deco">テレビ・ラジオ・CM</span><h2>Media</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
       <ul class="media" id="mediaList">
+        <li><span class="ttl"><a class="media-link" href="https://www.youtube.com/watch?v=zkSdcSVp6w0" target="_blank" rel="noopener">ニチバン「バトルウィン プロテクター」CM<span class="ext" aria-hidden="true">↗</span></a><small>出演</small></span><span class="when">2026</span></li>
         <li><span class="ttl">NHK「紅白歌合戦」<small>コーラス</small></span><span class="when">2013 · 2016</span></li>
         <li><span class="ttl">NHK「SONGS」<small>コーラス</small></span><span class="when">2013 — 2017</span></li>
         <li><span class="ttl">NHK「うたコン」<small>出演</small></span><span class="when">2018</span></li>
@@ -553,7 +557,7 @@ const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0
     }
     if(perf.length) render(toYears(perf),"perf",true);
     if(staff.length) render(toYears(staff),"staff",false);
-    if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
+    if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${/^https?:\/\//.test(r[4]||"")?`<a class="media-link" href="${esc(r[4])}" target="_blank" rel="noopener">${esc(r[1])}<span class="ext" aria-hidden="true">↗</span></a>`:esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
   }catch(e){ console.warn("シートを読み込めなかったため、保存済みの内容を表示しています",e); }
 })();
 
