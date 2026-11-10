@@ -32,132 +32,212 @@ img{max-width:100%}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&text=%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%AB%E3%83%AB%E4%BF%B3%E5%84%AA%EF%BC%8F%E9%9F%B3%E6%A5%BD%E5%AE%B6%E7%B7%A8%E6%9B%B2%20&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Cinzel:wght@500;600;700&display=swap">
 <style>
-/* Layout: 窓から光が差し込む明るい稽古場。白〜生成りの地に、ジャケットのネイビーで文字、窓枠の木の色を細いアクセントに。
-   トップは左に文字・右に写真の2分割。写真の空気（自然光・笑顔）にサイト全体を合わせる。 */
+/* Layout: 窓から光が入る稽古場。生成りの地にネイビーの文字、窓枠の木の色を細いアクセントに（今のサイトの色をそのまま使う）。
+   各セクションは「左に見出し・右に中身」の2段。中央ぞろえをやめて、公演パンフレットの本文ページのように左でそろえる。 */
 :root{
   color-scheme:light;
-  --paper:#faf8f4;     /* 自然光の白 */
-  --sand:#f1ebe2;      /* 壁のベージュ */
-  --linen:#e7ddcf;
-  --navy:#1f2d4a;      /* ジャケットのネイビー */
-  --navy-2:#2b3b5e;
-  --ink:#1d2230;
-  --muted:#5d6472;
-  --wood:#a5784a;      /* 窓枠の木 */
-  --wood-lt:#d9bf9c;
-  --line:rgba(31,45,74,.16);
-  --on-navy:#f4efe7;
+  --paper:#faf8f4; --sand:#f1ebe2; --linen:#e7ddcf;
+  --navy:#1f2d4a; --navy-2:#2b3b5e; --ink:#1d2230; --muted:#5d6472;
+  --wood:#a5784a; --wood-lt:#d9bf9c; --line:rgba(31,45,74,.16); --on-navy:#f4efe7;
   --display:"Playfair Display","Didot","Times New Roman",serif;
   --deco:"Cinzel","Trajan Pro","Times New Roman",serif;
-  --jp-display:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;
+  --mincho:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
   --body:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;
+  --head-h:62px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:500;font-size:16px;line-height:1.95;letter-spacing:.03em;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:500;font-size:16px;line-height:1.9;letter-spacing:.03em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--wood);outline-offset:4px}
+h2,h3,h4,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--wood);outline-offset:3px}
 .wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 @media (min-width:900px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
-.deco{font-family:var(--deco);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:12.5px}
+.deco{font-family:var(--deco);font-weight:600;letter-spacing:.2em;font-size:12.5px;text-transform:uppercase}
+.num{font-family:var(--display);font-weight:600;font-variant-numeric:lining-nums tabular-nums}
+section[id]{scroll-margin-top:var(--head-h)}
 
-/* Header */
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(250,248,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+
+/* ── ヘッダー ── */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(250,248,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:14px}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;height:var(--head-h)}
 .logo{display:flex;align-items:baseline;gap:12px;text-decoration:none;white-space:nowrap}
 .lg-name{font-family:var(--display);font-style:italic;font-weight:600;font-size:22px;color:var(--navy)}
-.lg-sub{font-family:var(--deco);font-weight:700;font-size:10.5px;letter-spacing:.3em;color:var(--wood);padding-left:12px;border-left:1px solid var(--line)}
-nav ul{display:flex;gap:28px;margin:0;padding:0;list-style:none}
-nav a{text-decoration:none;color:var(--muted);transition:color .25s}
-nav a:hover{color:var(--navy)}
+.lg-sub{font-family:var(--deco);font-weight:700;font-size:10.5px;letter-spacing:.3em;color:var(--wood);padding-left:12px;border-left:1px solid var(--line);text-transform:uppercase}
+#siteNav ul{display:flex;gap:26px}
+#siteNav a{position:relative;display:block;padding:6px 0;text-decoration:none;color:var(--muted);transition:color .2s}
+#siteNav a:hover,#siteNav a[aria-current]{color:var(--navy)}
+#siteNav a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--wood)}
 .menu-btn{display:none;appearance:none;border:1px solid var(--line);background:var(--paper);width:42px;height:42px;border-radius:50%;position:relative;cursor:pointer;flex:none}
 .menu-btn span{position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--navy);transform:translate(-50%,-50%);transition:transform .3s}
 .menu-btn span + span{transform:translate(-50%,-50%) rotate(90deg)}
 .menu-btn[aria-expanded="true"]{background:var(--navy)}
 .menu-btn[aria-expanded="true"] span{background:var(--on-navy);transform:translate(-50%,-50%) rotate(45deg)}
 .menu-btn[aria-expanded="true"] span + span{transform:translate(-50%,-50%) rotate(135deg)}
-/* NEW 表示 */
-.new{display:inline-block;margin-right:8px;padding:1px 8px;font-family:var(--deco);font-weight:700;font-size:10px;letter-spacing:.16em;color:var(--on-navy);background:var(--wood);vertical-align:2px}
-/* ブログ新着 */
-.blog-list{list-style:none;margin:0 0 4px;padding:0;border-top:1px solid var(--line)}
-.blog-list a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .3s}
-.blog-list a:hover{padding-left:12px;color:var(--wood-lt)}
-.blog-list .bt{font-weight:700;font-size:15px;min-width:0}
-.blog-list time{flex:none;font-size:12.5px;color:rgba(244,239,231,.7);font-variant-numeric:tabular-nums}
 
-/* ===== Hero：右に大きな写真、ロゴが写真の上まではみ出す雑誌風レイアウト ===== */
-.stage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--sand);position:relative;overflow:hidden}
-.stage .bg{grid-column:2;grid-row:1;position:relative;height:min(80vh,680px);max-width:100%}
-.stage .bg img{width:100%;height:100%;object-fit:cover;object-position:45% 26%;display:block}
-.stage .bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(241,235,226,.85) 0%,rgba(241,235,226,0) 28%)}
-.stage .wrap{grid-column:1 / 3;grid-row:1;width:100%;max-width:1240px;margin:0 auto;display:flex;align-items:center;padding-block:56px;position:relative;z-index:2;pointer-events:none}
-.hero-copy{pointer-events:auto;max-width:640px}
-.wordmark{margin:0 0 28px;display:flex;flex-direction:column;align-items:flex-start}
-.wm-name{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(54px,7.4vw,108px);line-height:.95;color:var(--navy);padding-right:.06em;letter-spacing:-.01em}
-.wm-name .ln{display:block}
-.wm-name .ln + .ln{padding-left:.55em}
-.wm-sub{display:flex;align-items:center;gap:14px;margin-top:18px;font-family:var(--deco);font-weight:700;font-size:clamp(12px,1.15vw,14.5px);letter-spacing:.42em;color:var(--wood)}
+/* ── トップ ── */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--sand);overflow:hidden}
+.hero-photo{grid-column:2;grid-row:1;position:relative;height:min(78vh,680px);min-height:520px}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 24%;display:block}
+.hero-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--sand) 0%,rgba(241,235,226,0) 22%)}
+.hero-copy{grid-column:1;grid-row:1;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;
+  padding:48px 8px 40px max(40px,calc((100vw - 1160px)/2 + 40px));animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.wordmark{margin:0 0 26px;display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap}
+.wm-name{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(56px,7.2vw,104px);line-height:.95;color:var(--navy);letter-spacing:-.01em}
+.wm-name span{display:block}
+.wm-name span + span{padding-left:.55em}
+.wm-sub{display:flex;align-items:center;gap:14px;margin-top:18px;font-family:var(--deco);font-weight:700;font-size:13px;letter-spacing:.4em;color:var(--wood);text-transform:uppercase}
 .wm-sub::before{content:"";width:36px;height:2px;background:var(--wood);flex:none}
-.roles{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;margin:0 0 6px;padding:0;list-style:none;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,1.6vw,21px);color:var(--navy-2)}
+.roles{display:flex;flex-wrap:wrap;gap:4px 0;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,1.5vw,20px);color:var(--navy-2);line-height:1.5}
 .roles li{display:flex;align-items:center}
-.roles li + li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood);margin:0 14px}
-.roles-jp{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;font-size:15px;font-weight:600;letter-spacing:.16em;color:var(--navy-2)}
-.scroll-cue{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:22px;z-index:3;display:flex;align-items:center;gap:10px;color:var(--wood);text-decoration:none}
-.scroll-cue::after{content:"";width:48px;height:1px;background:var(--wood)}
-@media (min-width:900px){.scroll-cue{left:max(40px,env(safe-area-inset-left,0px))}}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px auto 0;max-width:200px}
-.rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--wood-lt)}
-.rule svg{width:30px;height:auto}
+.roles li + li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood);margin:0 13px}
+.roles-jp{margin-top:4px;font-family:var(--mincho);font-size:15px;font-weight:600;letter-spacing:.16em;color:var(--navy-2)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px 24px;background:var(--navy);color:var(--on-navy);border:1px solid var(--navy);text-decoration:none;font-weight:700;font-size:14.5px;letter-spacing:.06em;transition:background .2s,color .2s}
+.btn:hover{background:var(--navy-2)}
+.btn.line{background:transparent;color:var(--navy)}
+.btn.line:hover{background:var(--navy);color:var(--on-navy)}
+.latest{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;align-items:baseline;margin-top:36px;padding-top:16px;border-top:1px solid var(--line);text-decoration:none;max-width:460px}
+.latest .lb{grid-column:1 / -1;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--wood)}
+.latest time{color:var(--navy);font-size:15px}
+.latest .tt{font-weight:700;font-size:14.5px;line-height:1.6;text-decoration:underline;text-decoration-color:var(--wood-lt);text-underline-offset:4px}
+.latest:hover .tt{color:var(--wood)}
 
-/* Gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--paper);padding:6px}
-.gallery figure{margin:0;aspect-ratio:4/5;overflow:hidden;max-width:100%}
-.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
-.gallery figure:hover img{transform:scale(1.03)}
-@media (prefers-reduced-motion:reduce){.gallery img{transition:none}}
-
-/* Marquee */
-.marquee{background:var(--navy);overflow:hidden;white-space:nowrap;padding-block:13px}
-.marquee-track{display:inline-flex;animation:tick 60s linear infinite}
-.marquee-track span{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(17px,1.9vw,22px);display:inline-flex;align-items:center;gap:36px;padding-right:36px;color:var(--on-navy)}
+.marquee{background:var(--navy);overflow:hidden;white-space:nowrap;padding-block:12px}
+.marquee-track{display:inline-flex;animation:tick 70s linear infinite}
+.marquee-track span{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(16px,1.7vw,20px);display:inline-flex;align-items:center;gap:34px;padding-right:34px;color:var(--on-navy)}
 .marquee-track span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--wood-lt)}
 @keyframes tick{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}html{scroll-behavior:auto}}
 
-/* ===== Sections ===== */
-section.sec .wrap{padding-block:clamp(76px,10vw,116px)}
-section.sec.alt{background:var(--sand)}
-.sec-head{text-align:center;margin-bottom:46px}
-.sec-head .deco{color:var(--wood)}
-.sec-head h2{font-family:var(--display);font-weight:600;font-style:italic;font-size:clamp(42px,5.6vw,66px);line-height:1.05;margin:4px 0 0;color:var(--navy)}
-.narrow{max-width:800px;margin:0 auto}
+/* ── セクション共通：左に見出し、右に中身 ── */
+.sec > .wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px 64px;padding-block:clamp(64px,8.5vw,108px)}
+.sec + .sec > .wrap{border-top:1px solid var(--line)}
+.sec.tint{background:var(--sand)}
+.sec.tint + .sec > .wrap,.sec.tint > .wrap{border-top:0}
+.sec-head{align-self:start;position:sticky;top:calc(var(--head-h) + 28px)}
+.sec-head h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(40px,4.4vw,56px);line-height:1.05;color:var(--navy)}
+.sec-head p{margin-top:10px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--wood)}
+.sec-head p::before{content:"";width:22px;height:1px;background:var(--wood)}
+.sec-body{min-width:0}
 
-/* News */
-.news{list-style:none;margin:0;padding:0}
-.news li{display:grid;grid-template-columns:120px 96px minmax(0,1fr);gap:16px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--line)}
+/* ── お知らせ ── */
+.news li{display:grid;grid-template-columns:112px 76px minmax(0,1fr);gap:16px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--line)}
 .news li:first-child{border-top:1px solid var(--line)}
-.news time{font-family:var(--display);font-weight:600;font-size:18px;font-variant-numeric:lining-nums tabular-nums;color:var(--navy)}
-.news .cat{color:var(--wood)}
+.news time{font-size:17px;color:var(--navy)}
+.news .cat{color:var(--wood);font-size:11.5px}
 .news .t{font-weight:700}
-.news .d{display:block;color:var(--muted);font-size:14px}
+.news .d{display:block;color:var(--muted);font-size:14px;line-height:1.7}
+.new{display:inline-block;margin-right:8px;padding:1px 8px;font-family:var(--deco);font-weight:700;font-size:10px;letter-spacing:.16em;color:var(--on-navy);background:var(--wood);vertical-align:2px;text-transform:uppercase}
+[data-k]{cursor:pointer;transition:background .2s}
+[data-k]:hover,[data-k]:focus-visible{background:rgba(165,120,74,.08)}
+.news li[data-k]{position:relative;padding-right:34px}
+.news li[data-k]::after{content:"";position:absolute;right:10px;top:50%;width:8px;height:8px;border-right:2px solid var(--wood);border-top:2px solid var(--wood);transform:translateY(-50%) rotate(45deg)}
 
-/* Profile：左に写真、右に文章と基本情報 */
-.profile{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:48px;align-items:start}
-.viewer{min-width:0}
+/* ── プロフィール ── */
+.profile{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:44px;align-items:start}
+.pname{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.pname b{font-size:clamp(28px,3vw,36px);font-weight:700;letter-spacing:.16em;line-height:1.3;color:var(--ink)}
+.pname i{font-family:var(--display);font-weight:600;font-size:19px;color:var(--navy-2)}
+.ptext p + p{margin-top:1em}
+.ptext{font-size:15.5px}
+.textlink{display:inline-block;margin-top:22px;font-weight:700;font-size:14.5px;color:var(--navy);text-decoration:underline;text-decoration-color:var(--wood);text-underline-offset:5px}
+.textlink:hover{color:var(--wood)}
 .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;outline:none}
 .slides::-webkit-scrollbar{display:none}
-.slides figure{flex:0 0 100%;margin:0;scroll-snap-align:start;aspect-ratio:2/3;max-width:100%;background:var(--linen)}
-.slides img{width:100%;height:100%;object-fit:contain;display:block}
-.slides img{cursor:zoom-in}
-.zoom-hint{margin:8px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
-.has-detail{cursor:pointer;transition:background .2s}
-.has-detail:hover,.has-detail:focus-visible{background:rgba(165,120,74,.07)}
-.news li.has-detail{position:relative;padding-right:28px}
-.news li.has-detail::after{content:"→";position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--wood);font-weight:700}
-.more-hint{display:block;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--wood)}
+.slides figure{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:4/5;background:var(--linen)}
+.slides img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in}
+.viewer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.vbtn{appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--navy);width:40px;height:40px;font-size:16px;font-weight:700;cursor:pointer}
+.vbtn:hover{background:var(--navy);color:var(--on-navy)}
+.dots{display:flex;gap:8px}
+.dots button{appearance:none;border:0;padding:0;width:8px;height:8px;border-radius:50%;background:var(--linen);cursor:pointer}
+.dots button[aria-current="true"]{background:var(--navy)}
+.zoom-hint{font-size:12px;color:var(--muted)}
+
+/* ── 出演歴 ── */
+.sub-h{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--wood);margin-bottom:6px}
+.selected li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 4px;border-top:1px solid var(--line)}
+.selected li:last-child{border-bottom:1px solid var(--line)}
+.selected .sy{font-family:var(--display);font-style:italic;font-weight:600;font-size:21px;color:var(--wood);font-variant-numeric:lining-nums;white-space:nowrap}
+.selected h3{font-size:clamp(18px,1.9vw,21px);font-weight:700;line-height:1.55;color:var(--ink)}
+.selected .en{font-family:var(--display);font-style:italic;font-weight:600;font-size:16px;color:var(--navy-2);line-height:1.6}
+.selected .meta{display:flex;flex-wrap:wrap;gap:0 18px;margin-top:4px;font-size:13.5px;color:var(--muted)}
+.selected .meta b{color:var(--navy);font-weight:700}
+
+.tabs{display:flex;gap:30px;margin-top:64px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:12px 0;font:inherit;font-weight:700;font-size:15.5px;letter-spacing:.06em;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tabs button:hover{color:var(--navy)}
+.tabs button[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--wood)}
+.tabs .n{margin-left:7px;font-family:var(--display);font-style:italic;font-weight:600;color:var(--wood);font-variant-numeric:lining-nums}
+.yr{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);outline:none}
+.yr h4{font-family:var(--display);font-weight:600;font-size:28px;line-height:1.25;color:var(--navy);font-variant-numeric:lining-nums}
+.credits{display:grid;gap:14px}
+.credits li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;padding:2px 4px}
+.credits .m{font-size:13px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.credits .w{font-weight:700;font-size:16px;line-height:1.6}
+.credits .r{display:block;font-size:14px;font-weight:700;color:var(--navy-2);line-height:1.6}
+.credits .v{display:block;font-size:13px;color:var(--muted);line-height:1.6}
+.credits .x{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);padding:1px 8px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.credits .more-hint{display:block;font-size:12.5px;font-weight:700;color:var(--wood)}
+.more{appearance:none;display:block;width:100%;margin-top:22px;padding:14px;background:transparent;border:1px solid var(--navy);color:var(--navy);font:inherit;font-weight:700;font-size:14.5px;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s}
+.more:hover{background:var(--navy);color:var(--on-navy)}
+.media li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:18px 4px;border-bottom:1px solid var(--line)}
+.media .ttl{font-weight:700;line-height:1.6}
+.media .ttl small{display:block;color:var(--muted);font-weight:500;font-size:13.5px}
+.media .when{font-size:16px;color:var(--navy);white-space:nowrap}
+.media a{color:inherit;text-decoration:underline;text-decoration-color:var(--wood);text-underline-offset:4px}
+.media a:hover{color:var(--wood)}
+.ext{display:inline-block;margin-left:6px;color:var(--wood);font-size:.9em}
+
+/* ── 写真・動画 ── */
+.photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.photos figure{aspect-ratio:3/4;overflow:hidden;background:var(--linen)}
+.photos img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;cursor:zoom-in;transition:transform .6s}
+.photos figure:hover img{transform:scale(1.03)}
+.videos{display:grid;gap:8px;margin-top:8px}
+.photos[hidden] + .videos{margin-top:0}
+.video{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:stretch;background:var(--navy);color:var(--on-navy);text-decoration:none}
+.video.nothumb{grid-template-columns:1fr}
+.video .th{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--navy-2)}
+.video .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.video:hover .th img{transform:scale(1.04)}
+.video .play{position:absolute;left:50%;top:50%;translate:-50% -50%;width:54px;height:54px;border-radius:50%;background:rgba(31,45,74,.72);border:1px solid var(--wood-lt);display:grid;place-items:center;transition:background .25s}
+.video:hover .play{background:var(--wood)}
+.video .play::before{content:"";border-left:14px solid #fff;border-block:9px solid transparent;margin-left:4px}
+.video .tx{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:20px 26px;min-width:0}
+.video b{font-size:16px;line-height:1.65}
+.video small{font-size:13px;color:rgba(244,239,231,.72)}
+.video .go{margin-top:8px;font-size:13px;font-weight:700;color:var(--wood-lt)}
+
+/* ── ブログ・お問い合わせ ── */
+.finale{background:var(--navy);color:var(--on-navy);--line:rgba(244,239,231,.2)}
+.finale > .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-block:clamp(68px,8.5vw,104px)}
+.panel{padding-right:56px;min-width:0}
+.panel + .panel{border-left:1px solid var(--line);padding-left:56px;padding-right:0}
+.panel h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(38px,4.2vw,52px);line-height:1.05}
+.panel .jp{margin:10px 0 22px;font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--wood-lt)}
+.panel > p.lead{margin-bottom:24px;font-size:15.5px;max-width:30em}
+.rows{border-top:1px solid var(--line)}
+.rows a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .25s,color .25s}
+.rows a:hover{padding-left:10px;color:var(--wood-lt)}
+.rows .nm{font-weight:700;font-size:15.5px;line-height:1.6}
+.rows .hd{display:block;font-size:12.5px;font-weight:500;color:rgba(244,239,231,.7)}
+.rows time{flex:none;font-size:14px;color:rgba(244,239,231,.75)}
+.rows .ext{color:var(--wood-lt);margin-left:0}
+.btn.light{background:var(--on-navy);color:var(--navy);border-color:var(--on-navy);margin-bottom:26px}
+.btn.light:hover{background:#fff}
+footer{background:var(--navy);color:rgba(244,239,231,.62)}
+footer .wrap{padding-block:22px 28px;font-size:11.5px;line-height:1.8}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+footer a{color:inherit}
+
+/* ── 詳細ウィンドウ・写真拡大 ── */
 .detail{position:fixed;inset:0;z-index:90;background:rgba(20,24,36,.55);display:flex;align-items:center;justify-content:center;
   padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .detail-panel{position:relative;background:var(--paper);width:100%;max-width:640px;max-height:100%;overflow-y:auto;padding:40px 36px 36px;border-top:4px solid var(--navy);box-shadow:0 30px 80px rgba(20,24,36,.4)}
@@ -165,157 +245,109 @@ section.sec.alt{background:var(--sand)}
 .detail-close:hover{background:var(--navy);color:var(--on-navy)}
 .detail-meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 40px 10px 0}
 .detail-meta .deco{color:var(--wood)}
-.detail-meta time{font-family:var(--display);font-weight:600;color:var(--navy);font-variant-numeric:lining-nums}
-.detail h3{font-family:var(--jp-display);font-weight:700;font-size:clamp(20px,2.6vw,24px);line-height:1.5;margin:0;color:var(--ink);text-wrap:balance}
-.detail-sub{margin:8px 0 0;color:var(--navy-2);font-weight:700;font-size:14.5px}
-.detail-lead{margin:16px 0 0;font-weight:700}
+.detail-meta time{color:var(--navy)}
+.detail h3{font-weight:700;font-size:clamp(20px,2.6vw,24px);line-height:1.5}
+.detail-sub{margin-top:8px;color:var(--navy-2);font-weight:700;font-size:14.5px}
+.detail-lead{margin-top:16px;font-weight:700}
 .detail-body{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);white-space:pre-wrap;font-size:15.5px;line-height:2}
 .detail-body:empty{display:none}
-.detail-link{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:13px 22px;background:var(--navy);color:var(--on-navy);text-decoration:none;font-weight:700;font-size:14.5px}
-.detail-link:hover{background:var(--navy-2)}
-@media (max-width:760px){.detail{align-items:flex-end;padding-left:0;padding-right:0;padding-bottom:0}.detail-panel{max-height:88vh;padding:36px max(20px,env(safe-area-inset-left,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-right,0px))}}
+.detail .btn{margin-top:24px}
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,24,36,.94);display:flex;align-items:center;justify-content:center;
   padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-.lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .lb-close,.lb-arrow{position:absolute;appearance:none;border:1px solid rgba(244,239,231,.35);background:rgba(20,24,36,.5);color:#f4efe7;width:46px;height:46px;font-size:20px;font-weight:700;cursor:pointer}
 .lb-close{top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px))}
 .lb-arrow{top:50%;transform:translateY(-50%)}
 .lb-arrow.l{left:max(12px,env(safe-area-inset-left,0px))}
 .lb-arrow.r{right:max(12px,env(safe-area-inset-right,0px))}
-.lb-count{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:0;right:0;margin:0;text-align:center;color:rgba(244,239,231,.75);font-size:13px;letter-spacing:.2em}
-.viewer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
-.vbtn{appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--navy);width:40px;height:40px;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
-.vbtn:hover{background:var(--navy);color:var(--on-navy)}
-.dots{display:flex;gap:8px}
-.dots button{appearance:none;border:0;padding:0;width:8px;height:8px;border-radius:50%;background:var(--linen);cursor:pointer}
-.dots button[aria-current="true"]{background:var(--navy)}
-.profile p{margin:0 0 1em;font-size:15.5px}
-.prof-name{text-align:center;margin:-14px auto 40px}
-.prof-name p{margin:0}
-.prof-name .pn-jp{font-family:var(--jp-display);font-weight:700;font-size:clamp(34px,4.4vw,48px);line-height:1.2;letter-spacing:.14em;padding-left:.14em;color:var(--ink)}
-.prof-name .pn-en{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(20px,2.4vw,26px);line-height:1.3;margin-top:6px !important;color:var(--navy-2);letter-spacing:.04em}
-.facts{margin-top:26px;border-top:2px solid var(--navy)}
-.facts dl{margin:0;display:grid;grid-template-columns:1fr;gap:0}
-.facts dl > div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
-.facts dt{color:var(--wood)}
-.facts dd{margin:0;font-weight:700;font-size:15px}
+.lb-count{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:rgba(244,239,231,.75);font-size:13px;letter-spacing:.2em}
 
-/* Programs */
-.programs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-bottom:80px}
-.program{background:#fff;border-top:3px solid var(--navy);padding:26px 20px 22px;display:flex;flex-direction:column;gap:10px;min-height:260px;box-shadow:0 1px 0 var(--line);transition:transform .35s,box-shadow .35s}
-.program:hover{transform:translateY(-4px);box-shadow:0 16px 32px -16px rgba(31,45,74,.3)}
-.program .yr{color:var(--wood)}
-.program svg{display:none}
-.program h3{font-family:var(--jp-display);font-weight:800;font-size:18px;line-height:1.55;margin:0;text-wrap:balance}
-.program .en{font-family:var(--display);font-style:italic;font-weight:600;font-size:16px;color:var(--navy-2)}
-.program .dir{margin-top:auto;font-size:13px;color:var(--muted);line-height:1.6}
-.program .rl{font-family:var(--deco);font-weight:700;letter-spacing:.18em;font-size:12.5px;color:var(--navy);border-top:1px solid var(--line);padding-top:10px;width:100%}
-
-/* Archive */
-.archive + .archive{margin-top:72px}
-.archive-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;margin:0 0 4px}
-.archive-title h3{font-family:var(--display);font-style:italic;font-weight:600;font-size:32px;margin:0;color:var(--navy)}
-.archive-title span{color:var(--wood)}
-.archive-note{margin:0 0 18px;color:var(--muted);font-size:14px}
-details.year{border-bottom:1px solid var(--line)}
-details.year:first-of-type{border-top:1px solid var(--line)}
-details.year summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:110px minmax(0,1fr) auto;align-items:center;gap:16px;padding:16px 4px;transition:background .25s}
-details.year summary:hover{background:rgba(165,120,74,.07)}
-details.year summary::-webkit-details-marker{display:none}
-details.year .y{font-family:var(--display);font-weight:600;font-size:30px;line-height:1;font-variant-numeric:lining-nums;color:var(--navy)}
-details.year .n{color:var(--muted)}
-details.year .pm{color:var(--wood);font-family:var(--deco);font-weight:700;font-size:20px;transition:transform .3s}
-details.year[open] .pm{transform:rotate(45deg)}
-.credits{list-style:none;margin:0;padding:4px 4px 24px 130px;display:grid;gap:14px}
-.credits li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:16px}
-.credits .m{font-size:13px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
-.credits .w{font-family:var(--jp-display);font-weight:700;font-size:16.5px;line-height:1.6}
-.credits .r{display:block;font-size:14px;font-weight:700;color:var(--navy-2)}
-.credits .v{display:block;font-size:13px;color:var(--muted)}
-.credits .x{font-family:var(--deco);font-weight:600;font-size:10.5px;letter-spacing:.16em;color:var(--muted);border:1px solid var(--line);padding:1px 8px;margin-left:8px;vertical-align:2px;white-space:nowrap}
-
-/* Media */
-.media{list-style:none;margin:0;padding:0}
-.media li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:20px 4px;border-bottom:1px solid var(--line)}
-.media li:first-child{border-top:1px solid var(--line)}
-.media .ttl{font-weight:700}
-.media-link{color:inherit;text-decoration:underline;text-decoration-color:var(--wood-lt);text-underline-offset:4px}
-.media-link:hover{color:var(--wood)}
-.media-link .ext{margin-left:6px;color:var(--wood);font-size:.9em;text-decoration:none;display:inline-block}
-.media .ttl small{display:block;color:var(--muted);font-weight:500;font-size:14px}
-.media .when{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);white-space:nowrap;font-variant-numeric:lining-nums}
-
-/* Blog & Contact */
-.finale{background:var(--navy);color:var(--on-navy);--line:rgba(244,239,231,.2)}
-.finale .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding-block:clamp(72px,9vw,104px)}
-.panel{padding-right:48px;min-width:0}
-.panel + .panel{border-left:1px solid var(--line);padding-left:48px;padding-right:0}
-.panel .deco{color:var(--wood-lt)}
-.panel h2{font-family:var(--display);font-weight:600;font-style:italic;font-size:clamp(40px,4.8vw,60px);line-height:1.05;margin:6px 0 18px}
-.panel p{margin:0 0 26px;max-width:30em;font-size:15.5px}
-.links{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.links a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .3s}
-.links a:hover{padding-left:12px;color:var(--wood-lt)}
-.links .nm{font-weight:700;font-size:15.5px}
-.links .nm.en{font-family:var(--display);font-style:italic;font-weight:600;font-size:21px}
-.links .hd{display:block;font-size:13px;color:rgba(244,239,231,.7)}
-.links .arw{color:var(--wood-lt);font-weight:700}
-
-footer{background:var(--navy);color:rgba(244,239,231,.65)}
-.privacy-note{margin:0;padding-bottom:22px;font-size:11.5px;line-height:1.8;color:rgba(244,239,231,.6)}
-.privacy-note a{color:inherit}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px;border-top:1px solid rgba(244,239,231,.15)}
-
-@media (max-width:960px){.programs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:760px){
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track,.hero-copy{animation:none}
+  .photos img{transition:none}
+}
+@media (max-width:1020px){
+  #siteNav ul{gap:18px}
+  .sec > .wrap{grid-template-columns:180px minmax(0,1fr);gap:28px 40px}
+}
+@media (max-width:820px){
   .menu-btn{display:block}
-  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -20px rgba(31,45,74,.35)}
-  nav.open{display:block}
-  nav ul{flex-direction:column;gap:0;padding:6px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px))}
-  nav a{display:block;padding:14px 4px;border-bottom:1px solid var(--line);font-size:14px;color:var(--navy)}
-  nav li:last-child a{border-bottom:0}
+  #siteNav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -20px rgba(31,45,74,.35)}
+  #siteNav.open{display:block}
+  #siteNav ul{flex-direction:column;gap:0;padding:4px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+  #siteNav a{padding:14px 4px;border-bottom:1px solid var(--line);font-size:14px;color:var(--navy)}
+  #siteNav li:last-child a{border-bottom:0}
+  #siteNav a[aria-current]::after{display:none}
   .lg-name{font-size:19px}
   .lg-sub{font-size:9.5px;letter-spacing:.24em;padding-left:10px}
-  .stage{grid-template-columns:1fr}
-  .stage .bg{grid-column:1;grid-row:1;height:58vh;max-height:480px}
-  .stage .bg::before{background:linear-gradient(0deg,rgba(241,235,226,1) 0%,rgba(241,235,226,0) 38%)}
-  .stage .bg img{object-position:62% 22%}
-  .stage .wrap{grid-column:1;grid-row:2;margin-top:-110px;padding-block:0 64px}
-  .wm-name{font-size:clamp(52px,15vw,76px)}
-  .roles{font-size:17px}
-  .roles li + li::before{margin:0 10px}
-  .scroll-cue{display:none}
-  .profile{grid-template-columns:1fr;gap:28px}
-  .viewer{max-width:380px;width:100%;margin:0 auto}
-  .facts dl > div{grid-template-columns:88px minmax(0,1fr)}
-  .news li{grid-template-columns:auto 1fr;gap:2px 16px}
-  .news li > div{grid-column:1 / 3}
-  .programs{grid-template-columns:1fr}
-  .program{min-height:0}
-  details.year summary{grid-template-columns:80px minmax(0,1fr) auto}
-  .credits{padding-left:4px}
-  .credits li{grid-template-columns:64px minmax(0,1fr)}
-  .finale .wrap{grid-template-columns:1fr}
+
+  .hero{grid-template-columns:1fr}
+  .hero-photo{grid-column:1;grid-row:1;height:54vh;min-height:340px;max-height:460px}
+  .hero-photo img{object-position:60% 20%}
+  .hero-photo::before{background:linear-gradient(0deg,var(--sand) 0%,rgba(241,235,226,0) 36%)}
+  .hero-copy{grid-column:1;grid-row:2;margin-top:-92px;padding:0 max(16px,env(safe-area-inset-right,0px)) 36px max(16px,env(safe-area-inset-left,0px))}
+  .wm-name{font-size:clamp(52px,15vw,74px)}
+  .hero-actions .btn{flex:1 1 150px;justify-content:center;padding-inline:12px}
+  .latest{max-width:none}
+
+  .sec > .wrap{grid-template-columns:1fr;gap:26px}
+  .sec-head{position:static;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 16px}
+  .sec-head p{margin-top:0}
+  .news li{grid-template-columns:auto minmax(0,1fr);gap:2px 14px;padding:16px 4px}
+  .news li > div{grid-column:1 / -1}
+  .profile{grid-template-columns:1fr;gap:26px}
+  .viewer{max-width:340px;width:100%;margin:0 auto}
+  .selected li{grid-template-columns:1fr;gap:2px;padding:18px 4px}
+  .photos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .video{grid-template-columns:1fr}
+  .video .tx{padding:16px 18px 18px}
+  .tabs{gap:16px;margin-top:48px}
+  .tabs button{font-size:13.5px;letter-spacing:.02em}
+  .tabs .n{margin-left:4px}
+  .yr{grid-template-columns:1fr;gap:10px;padding:18px 4px}
+  .credits li{grid-template-columns:64px minmax(0,1fr);gap:10px;padding-inline:0}
+  .photos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .finale > .wrap{grid-template-columns:1fr}
   .panel,.panel + .panel{padding:0;border-left:0}
   .panel + .panel{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
+  .detail{align-items:flex-end;padding-left:0;padding-right:0;padding-bottom:0}
+  .detail-panel{max-height:88vh;padding:36px max(20px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+}
+
+/* ── 動き：開いたとき名前が1行ずつせり上がり、写真はゆっくり寄る。スクロールで各項目が順番に現れる ── */
+.hero-copy{animation:none}
+.hero-photo{overflow:hidden}
+.hero-photo::before{z-index:1}
+.wm-name span{overflow:hidden;padding:.08em .12em .12em .1em;margin:-.08em -.12em -.12em -.1em}
+.wm-name span + span{padding-left:.55em}
+.wm-name i{display:block;font-style:inherit;animation:lift 1.25s cubic-bezier(.16,1,.3,1) both}
+.wm-name span + span i{animation-delay:.16s}
+.wm-sub,.roles,.roles-jp{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.wm-sub{animation-delay:.55s}
+.wm-sub::before{animation:draw 1.1s .7s cubic-bezier(.2,.7,.2,1) both;transform-origin:left}
+.roles{animation-delay:.8s}
+.roles-jp{animation-delay:.95s}
+.hero-photo img{animation:fadein 1.6s ease both,drift 16s cubic-bezier(.3,.1,.3,1) both}
+@keyframes lift{from{transform:translateY(108%)}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}}
+@keyframes fadein{from{opacity:0}}
+@keyframes drift{from{transform:scale(1.12)}}
+@keyframes draw{from{transform:scaleX(0)}}
+.anim [data-rv]{opacity:0;transform:translateY(36px);transition:opacity 1.05s cubic-bezier(.2,.7,.2,1),transform 1.05s cubic-bezier(.16,1,.3,1)}
+.anim [data-rv].in{opacity:1;transform:none}
+.anim .sec-head p::before{transform:scaleX(0);transform-origin:left;transition:transform 1s .45s cubic-bezier(.2,.7,.2,1)}
+.anim .sec-head.in p::before,.anim .sec-head:not([data-rv]) p::before{transform:none}
+.anim .photos figure[data-rv]{transform:translateY(36px) scale(.96)}
+.anim .photos figure[data-rv].in{transform:none}
+.news li[data-k]::after{transition:translate .25s}
+.news li[data-k]:hover::after{translate:5px 0}
+@media (prefers-reduced-motion:reduce){
+  .wm-name i,.wm-sub,.wm-sub::before,.roles,.roles-jp,.hero-photo img{animation:none}
 }
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="lozenge" viewBox="0 0 46 14">
-      <circle cx="23" cy="7" r="4" fill="#a5784a"/>
-    </symbol>
-    <symbol id="fan" viewBox="0 0 60 34">
-      <path d="M30 32 L4 32 A26 26 0 0 1 56 32 Z" fill="none" stroke="#d9b46a" stroke-width="1.5"/>
-      <path d="M30 32L9 15M30 32L19 9M30 32V6M30 32L41 9M30 32L51 15" stroke="#d9b46a" stroke-width="1.3"/>
-      <path d="M18 32A12 12 0 0 1 42 32" fill="none" stroke="#d9b46a" stroke-width="1.3"/>
-    </symbol>
-  </defs>
-</svg>
-
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#top"><span class="lg-name">Mitsuki Goto</span><span class="lg-sub">Official Website</span></a>
@@ -323,24 +355,22 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     <nav aria-label="メニュー" id="siteNav"><ul class="deco">
       <li><a href="#news">News</a></li>
       <li><a href="#profile">Profile</a></li>
-      <li><a href="#stage">Stage</a></li>
-      <li><a href="#media">Media</a></li>
-      <li><a href="#contact">Blog / Contact</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul></nav>
   </div>
 </header>
 
 <main id="top">
-  <section class="stage">
-    <div class="bg"><img src="img/photo-window.jpg" alt="窓辺にもたれる後藤光葵"></div>
-    <div class="wrap">
-      <div class="hero-copy">
-        <h1 class="wordmark"><span class="wm-name"><span class="ln">Mitsuki</span><span class="ln">Goto</span></span><span class="wm-sub">Official Website</span></h1>
-        <ul class="roles"><li>Musical Actor</li><li>Musician</li><li>Arranger</li></ul>
-        <p class="roles-jp">ミュージカル俳優 ／ 音楽家 ／ 編曲家</p>
-      </div>
+  <section class="hero">
+    <div class="hero-photo"><img src="img/photo-window.jpg" alt="窓辺にもたれる後藤光葵"></div>
+    <div class="hero-copy">
+      <h1 class="wordmark"><span class="wm-name"><span><i>Mitsuki</i></span><span><i>Goto</i></span></span><span class="wm-sub">Official Website</span></h1>
+      <ul class="roles"><li>Musical Actor</li><li>Musician</li><li>Arranger</li></ul>
+      <p class="roles-jp">ミュージカル俳優 ／ 音楽家 ／ 編曲家</p>
     </div>
-    <a class="scroll-cue deco" href="#news">Scroll</a>
   </section>
 
   <div class="marquee" aria-hidden="true">
@@ -351,122 +381,115 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   </div>
 
   <section class="sec" id="news">
-    <div class="wrap narrow">
-      <div class="sec-head"><span class="deco">お知らせ</span><h2>News</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <ul class="news" id="newsList">
-        <li><time datetime="2026-10">2026.10</time><span class="cat deco">Info</span><div><span class="t">オフィシャルサイトをリニューアルしました</span></div></li>
-        <li><time datetime="2026">2026</time><span class="cat deco">Stage</span><div><span class="t">今後の出演情報</span><span class="d">情報解禁まで、今しばらくお待ちください。</span></div></li>
-        <li><time datetime="2025-09">2025.09</time><span class="cat deco">Event</span><div><span class="t">某テーマパーク パレード コーラス歌唱</span></div></li>
-      </ul>
+    <div class="wrap">
+      <div class="sec-head"><h2>News</h2><p>お知らせ</p></div>
+      <div class="sec-body"><ul class="news" id="newsList"></ul></div>
     </div>
   </section>
 
-  <section class="sec alt" id="profile">
+  <section class="sec tint" id="profile">
     <div class="wrap">
-      <div class="sec-head"><span class="deco">プロフィール</span><h2>Profile</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <div class="prof-name"><p class="pn-jp">後藤光葵</p><p class="pn-en">Mitsuki Goto</p></div>
-      <div class="profile">
+      <div class="sec-head"><h2>Profile</h2><p>プロフィール</p></div>
+      <div class="sec-body profile">
         <div class="viewer">
-          <div class="slides" id="slides" tabindex="0" aria-label="写真">
-            <figure><img src="img/photo-portrait.jpg" alt="後藤光葵 ポートレート"></figure>
-            <figure><img src="img/photo-terrace.jpg" alt="テラスで微笑む後藤光葵" loading="lazy"></figure>
-            <figure><img src="img/photo-studio.jpg" alt="スタジオで撮影した後藤光葵の全身写真" loading="lazy"></figure>
+          <div class="slides" id="slides" tabindex="0" aria-label="プロフィール写真" data-zoom-group>
+            <figure><img data-zoom src="img/photo-portrait.jpg" alt="後藤光葵 ポートレート"></figure>
+            <figure><img data-zoom src="img/photo-terrace.jpg" alt="テラスで微笑む後藤光葵" loading="lazy"></figure>
+            <figure><img data-zoom src="img/photo-studio.jpg" alt="スタジオで撮影した後藤光葵の全身写真" loading="lazy"></figure>
           </div>
-          <p class="zoom-hint">写真をタップで拡大</p>
           <div class="viewer-nav">
             <button type="button" class="vbtn" id="prev" aria-label="前の写真">←</button>
             <div class="dots" id="dots"></div>
             <button type="button" class="vbtn" id="next" aria-label="次の写真">→</button>
           </div>
+          <p class="zoom-hint" style="text-align:center;margin-top:6px">写真をタップで拡大</p>
         </div>
         <div>
-          <div class="prose-orig">
+          <p class="pname"><b>後藤 光葵</b><i>Mitsuki Goto</i></p>
+          <div class="ptext">
             <p>茨城県水戸市出身。2月10日生まれ。<br>株式会社サンカラーズ所属。<br>洗足学園音楽大学ミュージカルコース卒業。</p>
             <p>主な出演作に、『ももクロ一座』（鈴木ひがし演出）、『チェーザレ』（小山ゆうな演出）、Disney on CLASSIC Premium『美女と野獣・アラジン イン・コンサート』（トニークレメンツ演出）、『アニー』バンドルズ役 他【2019年～】（山田和也演出）、『少女革命ウテナ』（吉谷光太郎演出）、『モーツァルト！』（小池修一郎演出）、『コメディ・トゥナイト！〜ローマで起こったおかしな出来事【江戸版】』黒衣 役（宮本亜門演出）、邦楽ミュージカル『夏花火♡恋名残』佐原喜三郎役（倉迫康史演出）、など。</p>
             <p>その他、NHK FM「ティティヴィルスの見えない蜂」、NHK「紅白歌合戦」「うたコン」「SONGS」、MBS TBS「シドニアの騎士 第九惑星戦役」angela“騎士行進曲”コーラスなど、舞台を中心に幅広く活動している。</p>
           </div>
+          <a class="textlink" href="https://www.sun-colorz.jp/artist/mitsuki-goto/" target="_blank" rel="noopener">所属事務所のプロフィールを見る<span class="ext" aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="stage">
+  <section class="sec" id="works">
     <div class="wrap">
-      <div class="sec-head"><span class="deco">出演歴</span><h2>Stage</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <div class="programs">
-        <article class="program"><span class="yr deco">2019 — 2025</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>丸美屋食品ミュージカル『アニー』</h3><span class="en">Annie</span><span class="dir">山田和也 演出<br>新国立劇場 ほか</span><span class="rl">Bundles</span></article>
-        <article class="program"><span class="yr deco">2018</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>東宝ミュージカル『モーツァルト！』</h3><span class="en">Mozart!</span><span class="dir">小池修一郎 演出<br>帝国劇場 ほか</span><span class="rl">Toho</span></article>
-        <article class="program"><span class="yr deco">2023</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>ミュージカル『チェーザレ 破壊の創造者』</h3><span class="en">Cesare</span><span class="dir">小山ゆうな 演出<br>明治座</span><span class="rl">Meijiza</span></article>
-        <article class="program"><span class="yr deco">2020 · 2025</span><svg viewBox="0 0 60 34" aria-hidden="true"><use href="#fan"/></svg><h3>Disney on CLASSIC Premium イン・コンサート</h3><span class="en">Beauty and the Beast / Aladdin</span><span class="dir">トニー・クレメンツ 演出<br>横浜アリーナ</span><span class="rl">Concert</span></article>
-      </div>
-      <div class="narrow">
-        <div class="archive">
-          <div class="archive-title"><h3>Performer</h3><span class="deco">出演</span></div>
-          <p class="archive-note">俳優として出演した舞台・コンサート</p>
-          <div id="perf"></div>
+      <div class="sec-head"><h2>Works</h2><p>出演歴</p></div>
+      <div class="sec-body">
+        <p class="sub-h">主な出演作</p>
+        <ul class="selected">
+          <li><span class="sy">2019 — 2026</span><div><h3>丸美屋食品ミュージカル『アニー』</h3><p class="en">Annie</p><p class="meta"><b>バンドルズ役 ほか</b><span>山田和也 演出</span><span>新国立劇場 中劇場 ほか全国</span></p></div></li>
+          <li><span class="sy">2018</span><div><h3>東宝ミュージカル『モーツァルト！』</h3><p class="en">Mozart!</p><p class="meta"><span>小池修一郎 演出</span><span>帝国劇場・梅田芸術劇場・御園座</span></p></div></li>
+          <li><span class="sy">2023</span><div><h3>ミュージカル『チェーザレ 破壊の創造者』</h3><p class="en">Cesare</p><p class="meta"><span>小山ゆうな 演出</span><span>明治座</span></p></div></li>
+          <li><span class="sy">2020 / 2025</span><div><h3>Disney on CLASSIC Premium イン・コンサート</h3><p class="en">Beauty and the Beast / Aladdin</p><p class="meta"><span>トニー・クレメンツ 演出</span><span>横浜アリーナ</span></p></div></li>
+        </ul>
+
+        <div class="tabs" role="tablist" aria-label="出演歴の種類">
+          <button type="button" role="tab" id="tab-perf" aria-controls="panel-perf" aria-selected="true">出演<span class="n" data-count="perf"></span></button>
+          <button type="button" role="tab" id="tab-staff" aria-controls="panel-staff" aria-selected="false" tabindex="-1">音楽スタッフ<span class="n" data-count="staff"></span></button>
+          <button type="button" role="tab" id="tab-media" aria-controls="panel-media" aria-selected="false" tabindex="-1">テレビ・ラジオ・CM<span class="n" data-count="media"></span></button>
         </div>
-        <div class="archive">
-          <div class="archive-title"><h3>Music Staff</h3><span class="deco">音楽スタッフ</span></div>
-          <p class="archive-note">音楽助手・副指揮・歌唱指導補助として参加した公演</p>
-          <div id="staff"></div>
-        </div>
+        <div role="tabpanel" id="panel-perf" aria-labelledby="tab-perf"></div>
+        <div role="tabpanel" id="panel-staff" aria-labelledby="tab-staff" hidden></div>
+        <div role="tabpanel" id="panel-media" aria-labelledby="tab-media" hidden></div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="media">
-    <div class="wrap narrow">
-      <div class="sec-head"><span class="deco">テレビ・ラジオ・CM</span><h2>Media</h2><div class="rule" aria-hidden="true"><svg viewBox="0 0 46 14"><use href="#lozenge"/></svg></div></div>
-      <ul class="media" id="mediaList">
-        <li><span class="ttl"><a class="media-link" href="https://www.youtube.com/watch?v=zkSdcSVp6w0" target="_blank" rel="noopener">ニチバン「バトルウィン プロテクター」CM<span class="ext" aria-hidden="true">↗</span></a><small>出演</small></span><span class="when">2026</span></li>
-        <li><span class="ttl">NHK「紅白歌合戦」<small>コーラス</small></span><span class="when">2013 · 2016</span></li>
-        <li><span class="ttl">NHK「SONGS」<small>コーラス</small></span><span class="when">2013 — 2017</span></li>
-        <li><span class="ttl">NHK「うたコン」<small>出演</small></span><span class="when">2018</span></li>
-        <li><span class="ttl">NHK FMシアター「ティティヴィルスの見えない蜂」<small>小見山佳典 監督</small></span><span class="when">2016</span></li>
-        <li><span class="ttl">TVアニメ「シドニアの騎士 第九惑星戦役」OP<small>angela「騎士行進曲」コーラス</small></span><span class="when">2015</span></li>
-        <li><span class="ttl">テレビCM 某テーマパーク<small>歌唱</small></span><span class="when">—</span></li>
-      </ul>
+  <section class="sec tint" id="gallery">
+    <div class="wrap">
+      <div class="sec-head"><h2>Gallery</h2><p>写真・動画</p></div>
+      <div class="sec-body">
+        <div class="photos" id="photoGrid" data-zoom-group></div>
+        <div class="videos" id="videoList"></div>
+      </div>
     </div>
   </section>
 
-  <section class="finale" id="contact">
+  <section class="finale" id="journal">
     <div class="wrap">
       <div class="panel">
-        <span class="deco">Blog</span>
         <h2>Journal</h2>
-        <p>稽古場のこと、本番のこと。日々の記録はブログで綴っています。</p>
-        <ul class="blog-list" id="blogList" hidden></ul>
-        <div class="links">
-          <a href="https://ameblo.jp/gotomitsuki0210/" target="_blank" rel="noopener"><span><span class="nm">ブログをもっと読む</span><span class="hd">Amebaブログ</span></span><span class="arw">↗</span></a>
-        </div>
+        <p class="jp">ブログ</p>
+        <div class="rows" id="blogList"></div>
+        <div class="rows" style="border-top:0"><a href="https://ameblo.jp/gotomitsuki0210/" target="_blank" rel="noopener"><span class="nm">ブログをもっと読む<span class="hd">Amebaブログ</span></span><span class="ext" aria-hidden="true">↗</span></a></div>
       </div>
-      <div class="panel">
-        <span class="deco">Contact</span>
+      <div class="panel" id="contact">
         <h2>Contact</h2>
-        <p>出演・お仕事のご依頼は、所属事務所 株式会社サンカラーズまでお問い合わせください。</p>
-        <div class="links">
-          <a href="https://www.sun-colorz.jp/contact/" target="_blank" rel="noopener"><span><span class="nm">お仕事のお問い合わせ</span><span class="hd">株式会社サンカラーズ お問い合わせフォーム</span></span><span class="arw">↗</span></a>
-          <a href="https://www.sun-colorz.jp/artist/mitsuki-goto/" target="_blank" rel="noopener"><span><span class="nm">所属事務所プロフィール</span><span class="hd">株式会社サンカラーズ</span></span><span class="arw">↗</span></a>
-          <a href="https://x.com/gotomitsuki55" target="_blank" rel="noopener"><span><span class="nm en">X</span><span class="hd">@gotomitsuki55</span></span><span class="arw">↗</span></a>
-          <a href="https://www.instagram.com/mikkunn.m/" target="_blank" rel="noopener"><span><span class="nm en">Instagram</span><span class="hd">@mikkunn.m</span></span><span class="arw">↗</span></a>
+        <p class="jp">お問い合わせ</p>
+        <p class="lead">出演・お仕事のご依頼は、所属事務所 株式会社サンカラーズまでお問い合わせください。</p>
+        <a class="btn light" href="https://www.sun-colorz.jp/contact/" target="_blank" rel="noopener">お仕事のお問い合わせフォームへ<span aria-hidden="true">↗</span></a>
+        <div class="rows">
+          <a href="https://www.sun-colorz.jp/artist/mitsuki-goto/" target="_blank" rel="noopener"><span class="nm">所属事務所プロフィール<span class="hd">株式会社サンカラーズ</span></span><span class="ext" aria-hidden="true">↗</span></a>
+          <a href="https://x.com/gotomitsuki55" target="_blank" rel="noopener"><span class="nm">X<span class="hd">@gotomitsuki55</span></span><span class="ext" aria-hidden="true">↗</span></a>
+          <a href="https://www.instagram.com/mikkunn.m/" target="_blank" rel="noopener"><span class="nm">Instagram<span class="hd">@mikkunn.m</span></span><span class="ext" aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+<footer><div class="wrap">
+  <div class="row"><span>© 2026 Mitsuki Goto</span><span>mitsukigoto.com</span></div>
+  <p>このサイトでは、アクセス状況を把握するためにGoogleアナリティクスを使用しています。Cookieを使って匿名のデータを集めており、個人を特定するものではありません。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Googleのポリシー</a>をご覧ください。</p>
+</div></footer>
+
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-labelledby="dtTitle">
   <div class="detail-panel">
     <button type="button" class="detail-close" id="dtClose" aria-label="閉じる">×</button>
-    <p class="detail-meta"><span class="deco" id="dtKind"></span><time id="dtDate"></time></p>
+    <p class="detail-meta"><span class="deco" id="dtKind"></span><time class="num" id="dtDate"></time></p>
     <h3 id="dtTitle"></h3>
     <p class="detail-sub" id="dtSub"></p>
     <p class="detail-lead" id="dtLead"></p>
     <div class="detail-body" id="dtBody"></div>
-    <a class="detail-link" id="dtLink" href="#" target="_blank" rel="noopener" hidden>詳しくはこちら <span aria-hidden="true">↗</span></a>
+    <a class="btn" id="dtLink" href="#" target="_blank" rel="noopener" hidden>詳しくはこちら<span aria-hidden="true">↗</span></a>
   </div>
 </div>
-
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="写真の拡大表示">
   <button type="button" class="lb-close" id="lbClose" aria-label="閉じる">×</button>
   <button type="button" class="lb-arrow l" id="lbPrev" aria-label="前の写真">←</button>
@@ -475,154 +498,235 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   <p class="lb-count" id="lbCount"></p>
 </div>
 
-<footer><div class="wrap deco"><span>© 2026 Mitsuki Goto</span><span>mitsukigoto.com</span></div><div class="wrap"><p class="privacy-note">このサイトでは、アクセス状況を把握するためにGoogleアナリティクスを使用しています。Cookieを使って匿名のデータを集めており、個人を特定するものではありません。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Googleのポリシー</a>をご覧ください。</p></div></footer>
-
 <script>
-// ===== 出演歴データ =====
-// 出演（俳優）: PERF / 音楽スタッフ: STAFF
-// m=月, w=作品名, r=役・担当, v=会場, x=補足(中止・延期)
-const PERF={
-2025:[{m:"3月",w:"Disney on CLASSIC Premium『アラジン』イン・コンサート",v:"横浜アリーナ"},{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"上田・大阪・名古屋・金沢"}],
-2024:[{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"広島・大阪・名古屋・仙台"}],
-2023:[{m:"1・2月",w:"ミュージカル『チェーザレ 破壊の創造者』",v:"明治座"},{m:"4・5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場 中劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"松本・大阪・名古屋・新潟"},{m:"11・12月",w:"ももクロ一座 特別公演『CHANGE THE FUTURE!』",v:"明治座（鈴木ひがし 演出）"},{m:"12月",w:"第6回 ももいろ歌合戦 ももクロ一座 紅組出場",v:"横浜アリーナ"}],
-2022:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』東京公演",v:"新国立劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"宮城・大阪・金沢・名古屋"}],
-2021:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"松本・東京・大阪・名古屋"},{m:"9・10月",w:"第2回 ももクロ一座 特別公演",v:"明治座",x:"延期"},{m:"12月",w:"丸美屋食品ミュージカル『アニー』クリスマスコンサート2021",v:"新国立劇場 中劇場"}],
-2020:[{m:"2月",w:"Disney on CLASSIC Premium『美女と野獣』イン・コンサート",v:"横浜アリーナ"},{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場 中劇場",x:"中止"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"大阪・群馬・名古屋・富山",x:"中止"}],
-2019:[{m:"5月",w:"丸美屋食品ミュージカル『アニー』",v:"新国立劇場"},{m:"7月",w:"ミュージカル『少女革命ウテナ』〜深く綻ぶ黒薔薇の〜",v:"シアターGロッソ"},{m:"8月",w:"丸美屋食品ミュージカル『アニー』地方公演",v:"梅田芸術劇場 ほか"}],
-2018:[{m:"2月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"佐原喜三郎 役",v:"新橋演舞場"},{m:"5〜8月",w:"東宝ミュージカル『モーツァルト！』",v:"帝国劇場・梅田芸術劇場・御園座"},{m:"12月",w:"第13回ミュージカルコース本公演『GYPSY』",r:"ポップ／ゴールドストーン 役"}],
-2017:[{m:"1月",w:"Senior Musical Showcase 〜Special Version〜",v:"洗足学園 前田ホール"},{m:"3・4月",w:"『コメディ・トゥナイト！〜ローマで起こったおかしな出来事【江戸版】』",r:"黒衣 役",v:"新橋演舞場・大阪松竹座（宮本亜門 演出）"},{m:"8月",w:"中高生ミュージカル『SMILE』",r:"ビッグ・ボブ 役",v:"洗足学園音楽大学 ビッグマウス"},{m:"10月",w:"第12回ミュージカルコース本公演『Catch Me If You Can』",r:"フランク・アバグネイル Sr. 役",v:"洗足学園 前田ホール"}],
-2016:[{m:"3月",w:"第5回ミュージカルコースアトリエ公演『MS TRAIN!!』",r:"主役・笹木巡 役",v:"洗足学園音楽大学 ビッグマウス"},{m:"7月",w:"Summer Musical Showcase Vol.10",v:"洗足学園 前田ホール"},{m:"10月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"佐原喜三郎 役",v:"洗足学園 前田ホール"}],
-2015:[{m:"3月",w:"第4回ミュージカルコースアトリエ公演『Little Women〜若草物語〜』",r:"ベア教授 役"},{m:"3月",w:"ドラマティックシアター2015『帽子屋のお茶の会』",r:"使者 役"},{m:"7月",w:"Summer Musical Showcase Vol.10"},{m:"10月",w:"第11回ミュージカルコース本公演『The Wiz〜オズの魔法使い〜』",r:"かかし 役"},{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"おたま父 役"}],
-2014:[{m:"3月",w:"第3回ミュージカルコースアトリエ公演『Into the Woods』",r:"パン屋 役"},{m:"3月",w:"ドラマティックシアター2014『ロング・クリスマスディナー』",r:"チャールズ 役"},{m:"7月",w:"Summer Musical Showcase Vol.9"},{m:"10月",w:"第10回ミュージカルコース本公演『CHICAGO』",r:"エイモス 役"},{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"おたま父 役"}],
-2013:[{m:"4月",w:"シアトリカル・リーディング『〜如月小春 作 DOLL〜』",r:"ト書き・兄・校長 役"},{m:"7月",w:"Summer Musical Showcase Vol.8"},{m:"8月",w:"中高生のためのミュージカル『LEGALLY BLONDE』",r:"ウィンスロップ 役・ニコ 役"},{m:"11月",w:"第9回ミュージカルコース本公演『FAME』",r:"マイヤーズ 役"},{m:"11月",w:"邦楽ミュージカル『恋娘近松合戦！』",r:"お寺の小坊主 役"}]};
+window.SHEET_ID="1Z24sLUhVd5NN7uwqOf_Sz10_66jSQ_ZwlE47RY_p74Y";
+// ↓スプレッドシートを読み込めなかったときに表示する、保存済みの内容
+window.SITE_DATA={"news": [{"date": "2026.10.17", "cat": "Info", "title": "オフィシャルサイトをリニューアルしました", "lead": "", "body": "Ameba Owndから新しいサイトに移りました。\n出演情報やお知らせは、こちらで更新していきます。\nブログはこれまで通りAmebaブログで書いています。", "link": ""}, {"date": "2026", "cat": "Stage", "title": "今後の出演情報", "lead": "情報解禁まで、今しばらくお待ちください。", "body": "", "link": ""}], "perf": [{"y": "2026", "m": "4・5月", "w": "丸美屋食品ミュージカル『アニー』東京公演", "r": "", "v": "新国立劇場 中劇場", "x": "", "d": "", "l": ""}, {"y": "2026", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "愛媛・大阪・仙台・名古屋", "x": "", "d": "", "l": ""}, {"y": "2025", "m": "3月", "w": "Disney on CLASSIC Premium『アラジン』イン・コンサート", "r": "", "v": "横浜アリーナ", "x": "", "d": "", "l": ""}, {"y": "2025", "m": "4・5月", "w": "丸美屋食品ミュージカル『アニー』東京公演", "r": "", "v": "新国立劇場 中劇場", "x": "", "d": "", "l": ""}, {"y": "2025", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "上田・大阪・名古屋・金沢", "x": "", "d": "", "l": ""}, {"y": "2024", "m": "4・5月", "w": "丸美屋食品ミュージカル『アニー』東京公演", "r": "", "v": "新国立劇場 中劇場", "x": "", "d": "", "l": ""}, {"y": "2024", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "広島・大阪・名古屋・仙台", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "1・2月", "w": "ミュージカル『チェーザレ 破壊の創造者』", "r": "", "v": "明治座", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "4・5月", "w": "丸美屋食品ミュージカル『アニー』東京公演", "r": "", "v": "新国立劇場 中劇場", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "松本・大阪・名古屋・新潟", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "11・12月", "w": "ももクロ一座 特別公演『CHANGE THE FUTURE!』", "r": "", "v": "明治座（鈴木ひがし 演出）", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "12月", "w": "第6回 ももいろ歌合戦 ももクロ一座 紅組出場", "r": "", "v": "横浜アリーナ", "x": "", "d": "", "l": ""}, {"y": "2022", "m": "5月", "w": "丸美屋食品ミュージカル『アニー』東京公演", "r": "", "v": "新国立劇場", "x": "", "d": "", "l": ""}, {"y": "2022", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "宮城・大阪・金沢・名古屋", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "5月", "w": "丸美屋食品ミュージカル『アニー』", "r": "", "v": "新国立劇場", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "松本・東京・大阪・名古屋", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "9・10月", "w": "第2回 ももクロ一座 特別公演", "r": "", "v": "明治座", "x": "延期", "d": "", "l": ""}, {"y": "2021", "m": "12月", "w": "丸美屋食品ミュージカル『アニー』クリスマスコンサート2021", "r": "", "v": "新国立劇場 中劇場", "x": "", "d": "", "l": ""}, {"y": "2020", "m": "2月", "w": "Disney on CLASSIC Premium『美女と野獣』イン・コンサート", "r": "", "v": "横浜アリーナ", "x": "", "d": "", "l": ""}, {"y": "2020", "m": "5月", "w": "丸美屋食品ミュージカル『アニー』", "r": "", "v": "新国立劇場 中劇場", "x": "中止", "d": "", "l": ""}, {"y": "2020", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "大阪・群馬・名古屋・富山", "x": "中止", "d": "", "l": ""}, {"y": "2019", "m": "5月", "w": "丸美屋食品ミュージカル『アニー』", "r": "", "v": "新国立劇場", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "7月", "w": "ミュージカル『少女革命ウテナ』〜深く綻ぶ黒薔薇の〜", "r": "", "v": "シアターGロッソ", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "8月", "w": "丸美屋食品ミュージカル『アニー』地方公演", "r": "", "v": "梅田芸術劇場 ほか", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "2月", "w": "邦楽ミュージカル『夏花火♡恋名残』", "r": "佐原喜三郎 役", "v": "新橋演舞場", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "5〜8月", "w": "東宝ミュージカル『モーツァルト！』", "r": "", "v": "帝国劇場・梅田芸術劇場・御園座", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "12月", "w": "第13回ミュージカルコース本公演『GYPSY』", "r": "ポップ／ゴールドストーン 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2017", "m": "1月", "w": "Senior Musical Showcase 〜Special Version〜", "r": "", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2017", "m": "3・4月", "w": "『コメディ・トゥナイト！〜ローマで起こったおかしな出来事【江戸版】』", "r": "黒衣 役", "v": "新橋演舞場・大阪松竹座（宮本亜門 演出）", "x": "", "d": "", "l": ""}, {"y": "2017", "m": "8月", "w": "中高生ミュージカル『SMILE』", "r": "ビッグ・ボブ 役", "v": "洗足学園音楽大学 ビッグマウス", "x": "", "d": "", "l": ""}, {"y": "2017", "m": "10月", "w": "第12回ミュージカルコース本公演『Catch Me If You Can』", "r": "フランク・アバグネイル Sr. 役", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2016", "m": "3月", "w": "第5回ミュージカルコースアトリエ公演『MS TRAIN!!』", "r": "主役・笹木巡 役", "v": "洗足学園音楽大学 ビッグマウス", "x": "", "d": "", "l": ""}, {"y": "2016", "m": "7月", "w": "Summer Musical Showcase Vol.10", "r": "", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2016", "m": "10月", "w": "邦楽ミュージカル『夏花火♡恋名残』", "r": "佐原喜三郎 役", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2015", "m": "3月", "w": "第4回ミュージカルコースアトリエ公演『Little Women〜若草物語〜』", "r": "ベア教授 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2015", "m": "3月", "w": "ドラマティックシアター2015『帽子屋のお茶の会』", "r": "使者 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2015", "m": "7月", "w": "Summer Musical Showcase Vol.10", "r": "", "v": "", "x": "", "d": "", "l": ""}, {"y": "2015", "m": "10月", "w": "第11回ミュージカルコース本公演『The Wiz〜オズの魔法使い〜』", "r": "かかし 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2015", "m": "11月", "w": "邦楽ミュージカル『夏花火♡恋名残』", "r": "おたま父 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2014", "m": "3月", "w": "第3回ミュージカルコースアトリエ公演『Into the Woods』", "r": "パン屋 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2014", "m": "3月", "w": "ドラマティックシアター2014『ロング・クリスマスディナー』", "r": "チャールズ 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2014", "m": "7月", "w": "Summer Musical Showcase Vol.9", "r": "", "v": "", "x": "", "d": "", "l": ""}, {"y": "2014", "m": "10月", "w": "第10回ミュージカルコース本公演『CHICAGO』", "r": "エイモス 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2014", "m": "11月", "w": "邦楽ミュージカル『夏花火♡恋名残』", "r": "おたま父 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2013", "m": "4月", "w": "シアトリカル・リーディング『〜如月小春 作 DOLL〜』", "r": "ト書き・兄・校長 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2013", "m": "7月", "w": "Summer Musical Showcase Vol.8", "r": "", "v": "", "x": "", "d": "", "l": ""}, {"y": "2013", "m": "8月", "w": "中高生のためのミュージカル『LEGALLY BLONDE』", "r": "ウィンスロップ 役・ニコ 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2013", "m": "11月", "w": "第9回ミュージカルコース本公演『FAME』", "r": "マイヤーズ 役", "v": "", "x": "", "d": "", "l": ""}, {"y": "2013", "m": "11月", "w": "邦楽ミュージカル『恋娘近松合戦！』", "r": "お寺の小坊主 役", "v": "", "x": "", "d": "", "l": ""}], "staff": [{"y": "2025", "m": "2月", "w": "第14回ミュージカルコースアトリエ公演『ドロシー』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2023", "m": "2・3月", "w": "洗足学園音楽大学 ミュージカルコース第12回アトリエ公演『マリー＝ガブリエルの自画像』", "r": "音楽助手", "v": "", "x": "", "d": "", "l": ""}, {"y": "2022", "m": "11月", "w": "邦楽ミュージカル『夏花火♡恋名残』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "1月", "w": "Winter Musical Showcase Vol.3", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "7月", "w": "Summer Musical Showcase Vol.16", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "10月", "w": "第17回ミュージカルコース本公演『COMPANY』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2021", "m": "11月", "w": "邦楽ミュージカル10周年記念公演『恋娘近松合戦！』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2020", "m": "1月", "w": "Winter Musical Showcase Vol.2", "r": "音楽助手", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2020", "m": "2月", "w": "第9回ミュージカルコースアトリエ公演『MS TRAIN!!』", "r": "音楽助手", "v": "洗足学園 ビッグマウス", "x": "中止", "d": "", "l": ""}, {"y": "2020", "m": "11月", "w": "邦楽ミュージカル『恋娘近松合戦！』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2020", "m": "12月", "w": "第16回ミュージカルコース本公演『MS TRAIN!! 2020 - Social Distance Version -』", "r": "音楽助手", "v": "洗足学園 MUSIC POOL CINO", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "2〜3月", "w": "第8回ミュージカルコースアトリエ公演『モダン・ミリー』", "r": "音楽助手", "v": "洗足学園 ビッグマウス", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "7月", "w": "Summer Musical Showcase Vol.14", "r": "副指揮・音楽助手", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "10月", "w": "第14回ミュージカルコース本公演『パジャマゲーム』", "r": "音楽助手", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2019", "m": "12月", "w": "邦楽ミュージカル『三人娘☆恋仇討』", "r": "音楽助手", "v": "明治座", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "8月", "w": "中高生ミュージカル『GREASE』", "r": "歌唱指導補助", "v": "洗足学園音楽大学 ビッグマウス", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "10月", "w": "邦楽ミュージカル『三人娘☆恋仇討』", "r": "音楽助手", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}, {"y": "2018", "m": "12月", "w": "第13回ミュージカルコース本公演『GYPSY』", "r": "音楽助手", "v": "洗足学園 前田ホール", "x": "", "d": "", "l": ""}], "media": [{"t": "ニチバン　バトルウィンプロテクター「パッと貼ってグッとラク！」篇　CM", "c": "出演", "y": "2026", "l": "https://www.youtube.com/watch?v=zkSdcSVp6w0"}, {"t": "NHK「紅白歌合戦」", "c": "コーラス", "y": "2013 · 2016", "l": ""}, {"t": "NHK「SONGS」", "c": "コーラス", "y": "2013 — 2017", "l": ""}, {"t": "NHK「うたコン」", "c": "出演", "y": "2018", "l": ""}, {"t": "NHK FMシアター「ティティヴィルスの見えない蜂」", "c": "小見山佳典 監督", "y": "2016", "l": ""}, {"t": "TVアニメ「シドニアの騎士 第九惑星戦役」OP", "c": "angela「騎士行進曲」コーラス", "y": "2015", "l": ""}, {"t": "テレビCM 某テーマパーク", "c": "歌唱", "y": "2026", "l": ""}, {"t": "パレード　某テーマパーク", "c": "歌唱", "y": "2026", "l": ""}], "blog": [{"t": "四年目のアニー", "u": "https://ameblo.jp/gotomitsuki0210/entry-12761618983.html", "date": "Tue, 30 Aug 2022 20:55:28 +0900"}, {"t": "アニー東京公演完走！！", "u": "https://ameblo.jp/gotomitsuki0210/entry-12741745338.html", "date": "Sun, 08 May 2022 22:54:18 +0900"}, {"t": "アニー明日初日。地方公演発表！", "u": "https://ameblo.jp/gotomitsuki0210/entry-12738880450.html", "date": "Fri, 22 Apr 2022 21:43:15 +0900"}], "gallery": [{"kind": "写真", "u": "img/photo-window.jpg", "t": "窓辺の後藤光葵", "n": ""}, {"kind": "写真", "u": "img/photo-terrace.jpg", "t": "テラスで微笑む後藤光葵", "n": ""}, {"kind": "写真", "u": "img/photo-portrait.jpg", "t": "後藤光葵 ポートレート", "n": ""}, {"kind": "写真", "u": "img/photo-studio.jpg", "t": "スタジオで撮影した全身写真", "n": ""}, {"kind": "動画", "u": "https://www.youtube.com/watch?v=zkSdcSVp6w0", "t": "ニチバン バトルウィンプロテクター「パッと貼ってグッとラク！」篇", "n": "CM出演・2026年"}]};
+// ===== 共通の動き（お知らせ・出演歴・詳細ウィンドウ・写真拡大・メニュー） =====
+const Site=(()=>{
+  let D=window.SITE_DATA; const $=id=>document.getElementById(id);
+  const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const DET=[]; const addDetail=o=>DET.push(o)-1;
+  const pad=n=>String(n).padStart(2,"0");
+  const fmtDate=s=>{const d=new Date(s);return isNaN(d)?"":`${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())}`;};
+  // 日付（2026.10.17 / 2026.10）から30日以内なら New
+  function isNew(str){
+    const m=String(str).match(/(\d{4})\D+(\d{1,2})(?:\D+(\d{1,2}))?/);
+    if(!m) return false;
+    const diff=(Date.now()-new Date(+m[1],+m[2]-1,m[3]?+m[3]:1).getTime())/86400000;
+    return diff>=-1&&diff<=30;
+  }
+  function groupYears(rows){
+    const m=new Map();
+    rows.forEach(r=>{if(!m.has(r.y))m.set(r.y,[]);m.get(r.y).push(r);});
+    return [...m.entries()].sort((a,b)=>b[0]-a[0]);
+  }
 
-const STAFF={
-2023:[{m:"2・3月",w:"洗足学園音楽大学 ミュージカルコース第12回アトリエ公演『マリー＝ガブリエルの自画像』",r:"音楽助手"}],
-2022:[{m:"11月",w:"邦楽ミュージカル『夏花火♡恋名残』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
-2021:[{m:"1月",w:"Winter Musical Showcase Vol.3",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"7月",w:"Summer Musical Showcase Vol.16",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"10月",w:"第17回ミュージカルコース本公演『COMPANY』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"11月",w:"邦楽ミュージカル10周年記念公演『恋娘近松合戦！』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
-2020:[{m:"1月",w:"Winter Musical Showcase Vol.2",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"2月",w:"第9回ミュージカルコースアトリエ公演『MS TRAIN!!』",r:"音楽助手",v:"洗足学園 ビッグマウス",x:"中止"},{m:"11月",w:"邦楽ミュージカル『恋娘近松合戦！』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"},{m:"12月",w:"第16回ミュージカルコース本公演『MS TRAIN!! 2020 - Social Distance Version -』",r:"音楽助手",v:"洗足学園 MUSIC POOL CINO"}],
-2019:[{m:"2〜3月",w:"第8回ミュージカルコースアトリエ公演『モダン・ミリー』",r:"音楽助手"},{m:"7月",w:"Summer Musical Showcase Vol.14",r:"副指揮・音楽助手",v:"洗足学園 前田ホール"},{m:"10月",w:"第14回ミュージカルコース本公演『パジャマゲーム』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"明治座"}],
-2018:[{m:"8月",w:"中高生ミュージカル『GREASE』",r:"歌唱指導補助",v:"洗足学園音楽大学 ビッグマウス"},{m:"10月",w:"邦楽ミュージカル『三人娘☆恋仇討』",r:"音楽助手",v:"洗足学園 前田ホール"},{m:"12月",w:"第13回ミュージカルコース本公演『GYPSY』",r:"音楽助手"}]};
+  // 写真・動画のURLを表示用に整える
+  const driveId=u=>{const m=String(u).match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=|thumbnail\?(?:[^#]*&)?id=)([\w-]{20,})/);return m?m[1]:"";};
+  const ytId=u=>{const m=String(u).match(/(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/);return m?m[1]:"";};
+  const photoSrc=u=>{const id=driveId(u);return id?`https://drive.google.com/thumbnail?id=${id}&sz=w1600`:u;};
+  const okUrl=u=>/^(https?:\/\/|img\/)/.test(u||"");
 
-const DETAILS=[];
-const addDetail=o=>DETAILS.push(o)-1;
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function render(data,id,openFirst){
-  const box=document.getElementById(id);
-  box.innerHTML="";
-  Object.keys(data).sort((a,b)=>b-a).forEach((y,i)=>{
-    const it=data[y],d=document.createElement("details");
-    d.className="year"; if(openFirst&&i===0) d.open=true;
-    d.innerHTML=`<summary><span class="y">${y}</span><span class="n deco">${it.length} ${it.length>1?"Works":"Work"}</span><span class="pm" aria-hidden="true">+</span></summary><ul class="credits">${it.map(e=>{const k=(e.d||e.l)?addDetail({kind:id==="staff"?"Music Staff":"Stage",date:y+"年 "+(e.m||""),title:e.w,sub:[e.r,e.v].filter(Boolean).join("　"),tag:e.x,body:e.d,link:e.l}):null;return `<li${k!=null?` class="has-detail" data-k="${k}" tabindex="0" role="button" aria-haspopup="dialog"`:""}><span class="m">${esc(e.m)}</span><div><span class="w">${esc(e.w)}</span>${e.x?`<span class="x">${esc(e.x)}</span>`:""}${e.r?`<span class="r">${esc(e.r)}</span>`:""}${e.v?`<span class="v">${esc(e.v)}</span>`:""}${k!=null?'<span class="more-hint">詳細を見る →</span>':""}</div></li>`;}).join("")}</ul>`;
-    box.appendChild(d);
-  });
-}
-render(PERF,"perf",true);
-render(STAFF,"staff",false);
-
-// ===== スプレッドシートから最新の内容を読み込む =====
-// 編集用シート: Mitsuki Goto Official Website 編集用（Googleスプレッドシート）
-// 読み込めなかったときは、上に書いてある内容がそのまま表示される
-const SHEET_ID="1Z24sLUhVd5NN7uwqOf_Sz10_66jSQ_ZwlE47RY_p74Y";
-async function loadSheet(name){
-  const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${encodeURIComponent(name)}&t=${Date.now()}`;
-  const txt=await (await fetch(url,{cache:"no-store"})).text();
-  const json=JSON.parse(txt.slice(txt.indexOf("(")+1,txt.lastIndexOf(")")));
-  if(json.status!=="ok") throw new Error(name);
-  return json.table.rows.map(r=>(r.c||[]).map(c=>c==null?"":String(c.f!=null?c.f:(c.v!=null?c.v:"")).trim()))
-    .filter(r=>r.some(v=>v!=="")&&r[0]!=="×"&&r[0]!=="x"&&r[0]!=="✕");
-}
-// 日付（2026.10.17 / 2026.10 / 2026/10/17）から30日以内なら New
-function isNew(str){
-  const m=String(str).match(/(\d{4})\D+(\d{1,2})(?:\D+(\d{1,2}))?/);
-  if(!m) return false;
-  const d=new Date(+m[1],+m[2]-1,m[3]?+m[3]:1);
-  const diff=(Date.now()-d.getTime())/86400000;
-  return diff>=-1&&diff<=30;
-}
-const toYears=rows=>{const d={};rows.forEach(r=>{const y=(r[1]||"").replace(/[^0-9]/g,"").slice(0,4);if(!y||!r[3])return;(d[y]=d[y]||[]).push({m:r[2],w:r[3],r:r[4],v:r[5],x:r[6],d:r[7],l:r[8]});});return d;};
-(async()=>{
-  try{
-    loadSheet("ブログ（自動）").then(rows=>{
-      const list=rows.filter(r=>r[0]&&/^https:\/\/ameblo\.jp\//.test(r[1])).slice(0,3);
-      if(!list.length) return;
-      const box=document.getElementById("blogList");
-      box.innerHTML=list.map(r=>{const d=new Date(r[2]);const ds=isNaN(d)?"":`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;return `<li><a href="${esc(r[1])}" target="_blank" rel="noopener"><span class="bt">${esc(r[0])}</span><time>${ds}</time></a></li>`;}).join("");
-      box.hidden=false;
-    }).catch(()=>{});
-    const [news,perf,staff,media]=await Promise.all(["お知らせ","出演","音楽スタッフ","メディア"].map(loadSheet));
-    if(news.length){
-      news.sort((a,b)=>String(b[1]).localeCompare(String(a[1]),"ja",{numeric:true}));
-      document.getElementById("newsList").innerHTML=news.filter(r=>r[3]).map(r=>`<li class="has-detail" tabindex="0" role="button" aria-haspopup="dialog" data-k="${addDetail({kind:r[2]||"News",date:r[1],title:r[3],sub:"",lead:r[4],body:r[5],link:r[6],isNew:isNew(r[1])})}"><time>${esc(r[1])}</time><span class="cat deco">${esc(r[2])}</span><div>${isNew(r[1])?'<span class="new">New</span>':""}<span class="t">${esc(r[3])}</span>${r[4]?`<span class="d">${esc(r[4])}</span>`:""}</div></li>`).join("");
+  let T=null,openYears=3,onRender=null;
+  function render(data){
+    D=data; DET.length=0;
+    // お知らせ
+    const news=D.news.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date),"ja",{numeric:true}));
+    $("newsList").innerHTML=news.map(n=>{
+      const fresh=isNew(n.date);
+      const k=(n.lead||n.body||n.link)?addDetail({kind:n.cat||"News",date:n.date,title:n.title,lead:n.lead,body:n.body,link:n.link,isNew:fresh}):null;
+      return T.news(n,k,fresh);
+    }).join("");
+    if($("latest")&&news[0]) $("latest").innerHTML=T.latest(news[0],isNew(news[0].date));
+    // 出演・音楽スタッフ
+    [["perf","Stage"],["staff","Music Staff"]].forEach(([key,kind])=>{
+      const groups=groupYears(D[key]); let hiddenCount=0;
+      const html=groups.map(([y,items],i)=>{
+        const hide=i>=openYears; if(hide) hiddenCount+=items.length;
+        const rows=items.map(e=>{
+          const k=(e.d||e.l)?addDetail({kind,date:y+"年 "+(e.m||""),title:e.w,sub:[e.r,e.v].filter(Boolean).join("　"),tag:e.x,body:e.d,link:e.l}):null;
+          return T.credit(e,k);
+        }).join("");
+        return T.year(y,rows,items.length,hide);
+      }).join("");
+      $("panel-"+key).innerHTML=html+(hiddenCount?T.more(groups[openYears][0],hiddenCount):"");
+    });
+    $("panel-media").innerHTML=T.mediaWrap(D.media.map(T.media).join(""));
+    if(D.blog&&D.blog.length) $("blogList").innerHTML=D.blog.slice(0,3).map(b=>T.blog(b,fmtDate(b.date))).join("");
+    document.querySelectorAll("[data-count]").forEach(el=>{el.textContent=D[el.dataset.count].length;});
+    // 写真・動画
+    if($("gallery")&&T.photo){
+      const g=(D.gallery||[]).filter(x=>okUrl(x.u));
+      const isVideo=x=>/動画|video|movie/i.test(x.kind||"")||(!/写真|photo/i.test(x.kind||"")&&!!ytId(x.u));
+      const photos=g.filter(x=>!isVideo(x)).map(x=>({src:photoSrc(x.u),t:x.t})), videos=g.filter(isVideo).map(x=>{const id=ytId(x.u);return {u:x.u,t:x.t,n:x.n,thumb:id?`https://i.ytimg.com/vi/${id}/hqdefault.jpg`:""};}).filter(x=>/^https?:/.test(x.u));
+      $("photoGrid").innerHTML=photos.map(T.photo).join(""); $("photoGrid").hidden=!photos.length;
+      $("videoList").innerHTML=videos.map(T.video).join(""); $("videoList").hidden=!videos.length;
+      const none=!photos.length&&!videos.length; $("gallery").hidden=none;
+      document.querySelectorAll('#siteNav a[href="#gallery"]').forEach(a=>{a.parentElement.hidden=none;});
     }
-    if(perf.length) render(toYears(perf),"perf",true);
-    if(staff.length) render(toYears(staff),"staff",false);
-    if(media.length) document.getElementById("mediaList").innerHTML=media.filter(r=>r[1]).map(r=>`<li><span class="ttl">${/^https?:\/\//.test(r[4]||"")?`<a class="media-link" href="${esc(r[4])}" target="_blank" rel="noopener">${esc(r[1])}<span class="ext" aria-hidden="true">↗</span></a>`:esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</span><span class="when">${esc(r[3]||"—")}</span></li>`).join("");
-  }catch(e){ console.warn("シートを読み込めなかったため、保存済みの内容を表示しています",e); }
+    if(onRender) onRender();
+  }
+
+  function init(tpl,opt={}){
+    T=tpl; openYears=opt.openYears||3; onRender=opt.onRender||null;
+    render(D);
+    document.addEventListener("click",e=>{
+      const b=e.target.closest("[data-more]"); if(!b) return;
+      const p=b.closest("[role=tabpanel]"); const first=p.querySelector("[data-year][hidden]");
+      p.querySelectorAll("[data-year][hidden]").forEach(x=>{x.hidden=false;});
+      b.remove(); if(first){first.setAttribute("tabindex","-1");first.focus({preventScroll:true});}
+    });
+    tabs(); modal(); menu(); viewer(); lightbox(); spy();
+  }
+
+  // ===== スプレッドシートから最新の内容を読み込む（読めなかったら保存済みの内容のまま） =====
+  async function loadSheets(id){
+    const tab=async name=>{
+      const url=`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&headers=1&sheet=${encodeURIComponent(name)}&t=${Date.now()}`;
+      const txt=await (await fetch(url,{cache:"no-store"})).text();
+      const json=JSON.parse(txt.slice(txt.indexOf("(")+1,txt.lastIndexOf(")")));
+      if(json.status!=="ok") throw new Error(name);
+      return json.table.rows.map(r=>(r.c||[]).map(c=>c==null?"":String(c.f!=null?c.f:(c.v!=null?c.v:"")).trim()))
+        .filter(r=>r.some(v=>v!=="")&&r[0]!=="×"&&r[0]!=="x"&&r[0]!=="✕");
+    };
+    const safe=name=>tab(name).catch(e=>{console.warn("シートを読み込めませんでした:",name,e);return null;});
+    const years=rows=>rows.map(r=>({y:(r[1]||"").replace(/[^0-9]/g,"").slice(0,4),m:r[2],w:r[3],r:r[4],v:r[5],x:r[6],d:r[7],l:r[8]})).filter(e=>e.y&&e.w);
+    const [news,perf,staff,media,gal,blog]=await Promise.all(["お知らせ","出演","音楽スタッフ","メディア","写真・動画","ブログ（自動）"].map(safe));
+    const N=Object.assign({},D);
+    if(news&&news.length) N.news=news.filter(r=>r[3]).map(r=>({date:r[1],cat:r[2],title:r[3],lead:r[4],body:r[5],link:r[6]}));
+    if(perf&&perf.length) N.perf=years(perf);
+    if(staff&&staff.length) N.staff=years(staff);
+    if(media&&media.length) N.media=media.filter(r=>r[1]).map(r=>({t:r[1],c:r[2],y:r[3],l:r[4]}));
+    if(gal) N.gallery=gal.filter(r=>r[2]).map(r=>({kind:r[1],u:r[2],t:r[3],n:r[4]}));
+    if(blog){const b=blog.filter(r=>r[0]&&/^https:\/\/ameblo\.jp\//.test(r[1])).map(r=>({t:r[0],u:r[1],date:r[2]}));if(b.length)N.blog=b;}
+    render(N);
+  }
+
+  function tabs(){
+    const all=[...document.querySelectorAll("[role=tab]")];
+    const sel=t=>all.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;$(x.getAttribute("aria-controls")).hidden=!on;});
+    all.forEach((t,i)=>{
+      t.addEventListener("click",()=>sel(t));
+      t.addEventListener("keydown",e=>{
+        if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft") return;
+        const n=all[(i+(e.key==="ArrowRight"?1:-1)+all.length)%all.length]; sel(n); n.focus();
+      });
+    });
+  }
+
+  function modal(){
+    const box=$("detail"); if(!box) return; let last=null;
+    const open=k=>{
+      const o=DET[k]; if(!o) return;
+      $("dtKind").textContent=o.kind||""; $("dtDate").textContent=o.date||"";
+      $("dtTitle").innerHTML=(o.isNew?'<span class="new">New</span>':"")+esc(o.title||"");
+      $("dtSub").textContent=[o.sub,o.tag].filter(Boolean).join("　"); $("dtSub").hidden=!$("dtSub").textContent;
+      $("dtLead").textContent=o.lead||""; $("dtLead").hidden=!o.lead;
+      $("dtBody").textContent=o.body||"";
+      const ok=/^https?:\/\//.test(o.link||""); $("dtLink").hidden=!ok; if(ok) $("dtLink").href=o.link;
+      last=document.activeElement; box.hidden=false; document.body.style.overflow="hidden"; $("dtClose").focus();
+    };
+    const close=()=>{box.hidden=true;document.body.style.overflow="";if(last)last.focus();};
+    document.addEventListener("click",e=>{const t=e.target.closest("[data-k]");if(t)open(+t.dataset.k);});
+    document.addEventListener("keydown",e=>{
+      if(!box.hidden&&e.key==="Escape") return close();
+      const t=e.target.closest&&e.target.closest("[data-k]");
+      if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();open(+t.dataset.k);}
+    });
+    $("dtClose").onclick=close;
+    box.addEventListener("click",e=>{if(e.target===box)close();});
+  }
+
+  function menu(){
+    const btn=$("menuBtn"),nav=$("siteNav"); if(!btn||!nav) return;
+    const set=o=>{nav.classList.toggle("open",o);document.documentElement.classList.toggle("menu-open",o);btn.setAttribute("aria-expanded",o);btn.setAttribute("aria-label",o?"メニューを閉じる":"メニューを開く");};
+    btn.addEventListener("click",()=>set(!nav.classList.contains("open")));
+    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>set(false)));
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")set(false);});
+  }
+
+  // プロフィール写真（横にめくる）
+  function viewer(){
+    const box=$("slides"),dots=$("dots"); if(!box||!dots) return;
+    const n=box.children.length;
+    for(let i=0;i<n;i++){const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",(i+1)+"枚目");b.onclick=()=>go(i);dots.appendChild(b);}
+    const cur=()=>Math.round(box.scrollLeft/box.clientWidth);
+    const go=i=>box.scrollTo({left:((i+n)%n)*box.clientWidth});
+    const mark=()=>[...dots.children].forEach((d,i)=>d.setAttribute("aria-current",i===cur()?"true":"false"));
+    $("prev").onclick=()=>go(cur()-1); $("next").onclick=()=>go(cur()+1);
+    box.addEventListener("scroll",()=>requestAnimationFrame(mark));
+    box.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur()+1);if(e.key==="ArrowLeft")go(cur()-1);});
+    mark();
+  }
+
+  // 写真の拡大表示（data-zoom-group ごとにまとめてめくれる）
+  function lightbox(){
+    const lb=$("lb"); if(!lb) return;
+    const img=$("lbImg"),cnt=$("lbCount"); let set=[],k=0,last=null;
+    const show=i=>{k=(i+set.length)%set.length;img.src=set[k].currentSrc||set[k].src;img.alt=set[k].alt;cnt.textContent=(k+1)+" / "+set.length;};
+    const close=()=>{lb.hidden=true;document.body.style.overflow="";if(last)last.focus();};
+    document.addEventListener("click",e=>{
+      const t=e.target.closest("img[data-zoom]"); if(!t) return;
+      const g=t.closest("[data-zoom-group]"); set=g?[...g.querySelectorAll("img[data-zoom]")]:[t];
+      last=document.activeElement; show(set.indexOf(t)); lb.hidden=false; document.body.style.overflow="hidden"; $("lbClose").focus();
+    });
+    $("lbClose").onclick=close; $("lbPrev").onclick=()=>show(k-1); $("lbNext").onclick=()=>show(k+1);
+    lb.addEventListener("click",e=>{if(e.target===lb)close();});
+    document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowRight")show(k+1);if(e.key==="ArrowLeft")show(k-1);});
+    let sx=null;
+    lb.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;},{passive:true});
+    lb.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(k+(dx<0?1:-1));sx=null;});
+  }
+
+  // 今見ている場所をメニューに表示
+  function spy(){
+    const links=[...document.querySelectorAll("#siteNav a[href^='#']")]; if(!links.length||!("IntersectionObserver" in window)) return;
+    const map=new Map(links.map(a=>[a.getAttribute("href").slice(1),a]));
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(!en.isIntersecting)return;links.forEach(a=>a.removeAttribute("aria-current"));const a=map.get(en.target.id);if(a)a.setAttribute("aria-current","true");});},{rootMargin:"-45% 0px -50% 0px"});
+    map.forEach((a,id)=>{const el=$(id);if(el)io.observe(el);});
+  }
+
+  return {init,esc,isNew,loadSheets};
 })();
 
-// 詳細ウィンドウ
-(function(){
-  const box=document.getElementById("detail"),$=id=>document.getElementById(id);
-  let last=null;
-  const open=k=>{
-    const o=DETAILS[k]; if(!o) return;
-    $("dtKind").textContent=o.kind||""; $("dtDate").textContent=o.date||"";
-    $("dtTitle").innerHTML=(o.isNew?'<span class="new">New</span>':"")+esc(o.title||"");
-    $("dtSub").textContent=[o.sub,o.tag].filter(Boolean).join("　"); $("dtSub").hidden=!$("dtSub").textContent;
-    $("dtLead").textContent=o.lead||""; $("dtLead").hidden=!o.lead;
-    $("dtBody").textContent=o.body||"";
-    const ok=/^https?:\/\//.test(o.link||""); $("dtLink").hidden=!ok; if(ok) $("dtLink").href=o.link;
-    last=document.activeElement; box.hidden=false; document.body.style.overflow="hidden"; $("dtClose").focus();
-  };
-  const close=()=>{box.hidden=true;document.body.style.overflow="";if(last)last.focus();};
-  document.addEventListener("click",e=>{const t=e.target.closest(".has-detail");if(t)open(+t.dataset.k);});
-  document.addEventListener("keydown",e=>{
-    if(!box.hidden&&e.key==="Escape") return close();
-    const t=e.target.closest&&e.target.closest(".has-detail");
-    if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();open(+t.dataset.k);}
-  });
-  $("dtClose").onclick=close;
-  box.addEventListener("click",e=>{if(e.target===box)close();});
-})();
-
-// スマホ用メニュー
-(function(){
-  const btn=document.getElementById("menuBtn"),nav=document.getElementById("siteNav");
-  const set=o=>{nav.classList.toggle("open",o);btn.setAttribute("aria-expanded",o);btn.setAttribute("aria-label",o?"メニューを閉じる":"メニューを開く");};
-  btn.addEventListener("click",()=>set(!nav.classList.contains("open")));
-  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>set(false)));
-})();
-
-// 写真ビューア
-(function(){
-  const box=document.getElementById("slides"),dots=document.getElementById("dots");
-  const n=box.children.length;
-  for(let i=0;i<n;i++){const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",(i+1)+"枚目");b.onclick=()=>go(i);dots.appendChild(b);}
-  const cur=()=>Math.round(box.scrollLeft/box.clientWidth);
-  const go=i=>box.scrollTo({left:((i+n)%n)*box.clientWidth});
-  const mark=()=>[...dots.children].forEach((d,i)=>d.setAttribute("aria-current",i===cur()?"true":"false"));
-  document.getElementById("prev").onclick=()=>go(cur()-1);
-  document.getElementById("next").onclick=()=>go(cur()+1);
-  box.addEventListener("scroll",()=>requestAnimationFrame(mark));
-  box.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur()+1);if(e.key==="ArrowLeft")go(cur()-1);});
-  mark();
-
-  // 拡大表示
-  const imgs=[...box.querySelectorAll("img")],lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),cnt=document.getElementById("lbCount");
-  let k=0;
-  const show=i=>{k=(i+n)%n;lbImg.src=imgs[k].src;lbImg.alt=imgs[k].alt;cnt.textContent=(k+1)+" / "+n;};
-  const open=i=>{show(i);lb.hidden=false;document.body.style.overflow="hidden";document.getElementById("lbClose").focus();};
-  const close=()=>{lb.hidden=true;document.body.style.overflow="";go(k);};
-  imgs.forEach((im,i)=>im.addEventListener("click",()=>open(i)));
-  document.getElementById("lbClose").onclick=close;
-  document.getElementById("lbPrev").onclick=()=>show(k-1);
-  document.getElementById("lbNext").onclick=()=>show(k+1);
-  lb.addEventListener("click",e=>{if(e.target===lb)close();});
-  document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowRight")show(k+1);if(e.key==="ArrowLeft")show(k-1);});
-  let sx=null;
-  lb.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
-  lb.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(k+(dx<0?1:-1));sx=null;});
+(()=>{
+  const e=Site.esc;
+  // スクロールに合わせて、各項目を順番にふわっと表示（1回だけ）。シート読み込み後に入れ替わった項目は、画面より下にあるものだけ対象
+  const canAnim="IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches;
+  let io=null,first=true;
+  function reveal(){
+    if(!canAnim) return;
+    if(!io){
+      document.documentElement.classList.add("anim");
+      io=new IntersectionObserver(es=>es.forEach(en=>{
+        if(!en.isIntersecting) return;
+        const el=en.target; io.unobserve(el); el.classList.add("in");
+        setTimeout(()=>{el.removeAttribute("data-rv");el.style.transitionDelay="";},1300+parseFloat(el.style.transitionDelay||0));
+      }),{rootMargin:"0px 0px -10% 0px"});
+    }
+    const seen=new Map();
+    document.querySelectorAll(".sec-head,#newsList > li,.profile > *,.sub-h,.selected > li,.tabs,[role=tabpanel],.photos > figure,.videos > a,.finale .panel").forEach(el=>{
+      if(el.dataset.rvDone) return; el.dataset.rvDone="1";
+      if(!first&&el.getBoundingClientRect().top<innerHeight) return;
+      const i=seen.get(el.parentElement)||0; seen.set(el.parentElement,i+1);
+      el.setAttribute("data-rv",""); el.style.transitionDelay=Math.min(i,6)*110+"ms"; io.observe(el);
+    });
+    first=false;
+  }
+  Site.init({
+    news:(n,k,fresh)=>`<li${k!=null?` data-k="${k}" tabindex="0" role="button" aria-haspopup="dialog"`:""}><time class="num">${e(n.date)}</time><span class="cat deco">${e(n.cat)}</span><div>${fresh?'<span class="new">New</span>':""}<span class="t">${e(n.title)}</span>${n.lead?`<span class="d">${e(n.lead)}</span>`:""}</div></li>`,
+    latest:(n,fresh)=>`<span class="lb">最新のお知らせ</span><time class="num">${e(n.date)}</time><span class="tt">${e(n.title)}</span>`,
+    year:(y,rows,count,hide)=>`<section class="yr" data-year${hide?" hidden":""}><h4>${e(y)}</h4><ul class="credits">${rows}</ul></section>`,
+    credit:(c,k)=>`<li${k!=null?` data-k="${k}" tabindex="0" role="button" aria-haspopup="dialog"`:""}><span class="m">${e(c.m)}</span><div><span class="w">${e(c.w)}</span>${c.x?`<span class="x">${e(c.x)}</span>`:""}${c.r?`<span class="r">${e(c.r)}</span>`:""}${c.v?`<span class="v">${e(c.v)}</span>`:""}${k!=null?'<span class="more-hint">詳細を見る</span>':""}</div></li>`,
+    more:(y,count)=>`<button type="button" class="more" data-more>${e(y)}年以前も表示する（${count}件）</button>`,
+    mediaWrap:rows=>`<ul class="media">${rows}</ul>`,
+    media:m=>`<li><span class="ttl">${/^https?:\/\//.test(m.l)?`<a href="${e(m.l)}" target="_blank" rel="noopener">${e(m.t)}<span class="ext" aria-hidden="true">↗</span></a>`:e(m.t)}${m.c?`<small>${e(m.c)}</small>`:""}</span><span class="when num">${e(m.y||"")}</span></li>`,
+    photo:g=>`<figure><img data-zoom src="${e(g.src)}" alt="${e(g.t||"後藤光葵の写真")}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"></figure>`,
+    video:v=>`<a class="video${v.thumb?"":" nothumb"}" href="${e(v.u)}" target="_blank" rel="noopener">${v.thumb?`<span class="th"><img src="${e(v.thumb)}" alt="" loading="lazy" onerror="const a=this.closest('a');a.classList.add('nothumb');this.parentElement.remove()"><span class="play" aria-hidden="true"></span></span>`:""}<span class="tx"><b>${e(v.t||"動画を見る")}</b>${v.n?`<small>${e(v.n)}</small>`:""}<span class="go">動画を見る ↗</span></span></a>`,
+    blog:(b,d)=>`<a href="${e(b.u)}" target="_blank" rel="noopener"><span class="nm">${e(b.t)}</span><time class="num">${d}</time></a>`
+  },{openYears:3,onRender:()=>reveal()});
+  if(window.SHEET_ID) Site.loadSheets(window.SHEET_ID).catch(()=>{});
 })();
 </script>
 
